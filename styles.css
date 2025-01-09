@@ -1,0 +1,95 @@
+body {
+    font-family: 'Roboto Mono', monospace;
+}
+
+.grid-bg {
+    background-color: #000; /* Fondo oscuro */
+    background-image:
+        linear-gradient(0deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 40px 40px; /* Tamaño de cada celda del grid */
+}
+
+.light-mode {
+    background-color: #fff;
+    color: #000 !important;
+}
+
+.light-mode .grid-bg {
+    background-color: #fff;
+    background-image:
+        linear-gradient(0deg, rgba(0, 0, 0, 1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 0, 0, 1) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-repeat: repeat;
+    min-height: 100vh;
+}
+
+.light-mode .timeline {
+    border-left: 2px solid #000; /* Cambia el color de la barra en modo claro */
+}
+
+.light-mode .timeline-item::before {
+    background-color: #000; /* Cambia el color del círculo en modo claro */
+    border: 5px solid #000; /* Cambia el color del borde del círculo en modo claro */
+}
+
+.fade-section {
+    opacity: 0;
+    transform: translateY(3rem);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+.timeline {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-left: 20px;
+    padding-left: 20px;
+    border-left: 2px solid #e5e7eb;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.timeline-content {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 20px; /* Ajusta el padding según tus necesidades */
+    overflow-wrap: break-word; /* Permite que el texto se ajuste dentro del contenedor */
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -30px; /* Ajusta la posición horizontal del círculo */
+    top: 30px;
+    width: 20px;
+    height: 20px;
+    background-color: #e5e7eb;
+    border-radius: 50%;
+    border: 5px solid #e5e7eb; 
+}
+.experience {
+    scroll-snap-align: start;
+    height: 100vh;
+    display: grid;
+    justify-content: center;
+    justify-items: center;
+    align-items: center;
+    align-content: center;
+    gap: 40px;
+    animation: fade-section 1s ease-in-out;
+}
+

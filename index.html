@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alberto Fernandez</title>
+    <link rel="icon" href="https://media.licdn.com/dms/image/v2/D4D03AQGc9lthXkg9vQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1712156388987?e=1741824000&v=beta&t=ymgZVCKfWZykdWNv7fl0q5yB8hg5E_lQnzhCegqlwpQ" type="image/x-icon">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+</head>
+
+<body class="grid-bg text-white min-h-screen flex flex-col snap-y snap-mandatory overflow-y-scroll">
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 flex justify-between items-center px-8 py-4">
+        <ul class="flex space-x-8 md:space-x-12 lg:space-x-16 ml-auto text-xl">
+            <li><a href="#intro" id="nav-intro" class="hover:text-gray-400">&lt;intro/&gt;</a></li>
+            <li><a href="#experience" id="nav-experience" class="hover:text-gray-400">&lt;experience/&gt;</a></li>
+            <!--<li><a href="#projects" id="nav-projects" class="hover:text-gray-400">&lt;projects/&gt;</a></li>-->
+            <li><a href="#about" id="nav-about" class="hover:text-gray-400">&lt;about/&gt;</a></li>
+        </ul>
+        <div class="flex space-x-4 ml-auto">
+            <a href="https://www.linkedin.com/in/alberto-fern%C3%A1ndez-palomo-38a583267/" target="_blank" class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+            </a>
+            <a href="https://github.com/alberfdez1523" target="_blank" class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="intro" class="snap-start h-screen flex items-center justify-between px-auto py-auto ml-auto mr-auto space-x-4">
+        <!-- Left Content -->
+        <div>
+            <p class="text-xl" id="greeting">Hi <span class="animate-wave">👋</span>, I'm</p>
+            <h1 class="text-4xl md:text-6xl lg:text-8xl font-bold text-green-400" id="name">ALBERTO FERNÁNDEZ</h1>
+            <h1 class="text-4xl md:text-6xl lg:text-8xl font-bold text-green-400" id="name">PALOMO</h1>
+            <h2 class="text-3xl md:text-5xl lg:text-7xl font-bold" id="profession">SOFTWARE ENGINEER</h2>
+            <p class="mt-auto text-xl" id="scroll">Scroll <span>&#x2193;</span></p>
+        </div>
+
+        <!-- Right Content -->
+        <div class="grid max-w-md">
+            <h3 class="text-2xl font-bold" id="about-title">ABOUT ME</h3>
+            <p class="text-xl mt-2 leading-relaxed" id="about-text">
+                Passionate about computer science, I define myself as a person eager to learn and open to meeting more people in the field with whom I can collaborate.
+            </p>
+            <a href="#experience" id = "know-more" class="mt-auto ml-auto px-4 py-2 border border-gray-600 hover:border-gray-400 text-sm uppercase text-right">Know More</a>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="experience px-4 py-8">
+        <h2 class="text-4xl md:text-6xl lg:text-8xl font-bold text-center mb-8" id="experience-title">EXPERIENCE</h2>
+        <div id="languages" class="flex flex-wrap justify-center gap-4 mb-8">
+            <a class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
+                <i class="fab fa-python text-blue-500"></i>
+                <span>Python</span>
+            </a>
+            <a class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
+                <i class="fab fa-html5 text-orange-500"></i>
+                <span>HTML</span>
+            </a>
+            <a class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
+                <i class="fab fa-css3-alt text-blue-600"></i>
+                <span>CSS</span>
+            </a>
+            <a class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
+                <i class="fab fa-react text-blue-400"></i>
+                <span>React</span>
+            </a>
+            <a class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
+                <i class="fas fa-database text-yellow-500"></i>
+                <span>SQL</span>
+            </a>
+            <a class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
+                <i class="fab fa-java text-red-600"></i>
+                <span>Java</span>
+            </a>
+            <a class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
+                <i class="fas fa-code text-green-600"></i>
+                <span>C++</span>
+            </a>
+            <a class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
+                <i class="fab fa-js-square text-yellow-400"></i>
+                <span>Django</span>
+            </a>
+            <a class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
+                <i class="fab fa-css3-alt text-teal-500"></i>
+                <span>TailwindCSS</span>
+            </a>
+        </div>
+        <div class="flex flex-col space-y-4 mt-8">
+            <div class="timeline w-full max-w-4xl mx-auto">
+                <div class="timeline-item">
+                    <div class="timeline-content p-4">
+                        <h3 class="text-2xl font-semibold text-center" id="job1_title">Database Operator</h3>
+                        <p class="text-sm text-gray-400 text-center" id="job1_period">May 2024 - July 2024</p>
+                        <p class="text-base text-center mt-2 mx-4" id="job1_description">
+                            Alfotrailer, S.L. / Assistance in solving problems related to databases and implementing solutions. 
+                            Updating and modifying records in the database.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class ="flex justify-end space-x-4 mt-8">
+            <a id = "link_experience" href="https://www.linkedin.com/in/alberto-fern%C3%A1ndez-palomo-38a583267/details/experience/" target="_blank" class="px-4 py-2 border border-gray-600 hover:border-gray-400 text-sm uppercase">View more experience</a>
+            <a id = "link_education" href="https://www.linkedin.com/in/alberto-fern%C3%A1ndez-palomo-38a583267/details/education/" target="_blank" class="px-4 py-2 border border-gray-600 hover:border-gray-400 text-sm uppercase">View my education</a>
+        </div>
+    </section>
+    <!-- About me -->
+    <section id="about" class="about px-4 py-8">
+        <h2 class="text-4xl md:text-6xl lg:text-8xl font-bold text-center mb-8">ABOUT ME</h2>
+        <div class="flex flex-col items-center space-y-4">
+            <p id="about-paragraph-1" class="text-base md:text-lg lg:text-xl text-center max-w-4xl">
+                I have always been drawn to computer science, but it wasn't until I delved deeper into programming that I realized this 
+                was truly my place—the field where I want to keep growing and learning. 
+            </p>
+            <p id="about-paragraph-2" class="text-base md:text-lg lg:text-xl text-center max-w-4xl">
+                The early stages of university were not easy for me. At first, I wasn’t quite sure how to approach Software Engineering 
+                studies or how to find my footing in such a broad and complex field. However, over time, there was a pivotal moment when 
+                my perspective shifted: I learned to think like an engineer, focusing on problem-solving and structured thinking rather 
+                than just programming skills. This mindset is something I consider one of my greatest strengths.            
+            </p>
+            <p id="about-paragraph-3" class="text-base md:text-lg lg:text-xl text-center max-w-4xl">
+                I am passionate about learning new programming languages and tackling challenges. Even if I don’t initially master 
+                a particular language, I have the ability to adapt quickly and absorb knowledge like a sponge. This adaptability 
+                also enables me to integrate seamlessly into both teams and practical environments.
+            </p>
+            <p id="about-paragraph-4" class="text-base md:text-lg lg:text-xl text-center max-w-4xl">
+                In my free time, I enjoy my three main hobbies: video games, basketball, and cinema. These passions not only inspire 
+                me but also help me disconnect and maintain balance in my daily life. I firmly believe there is always something new 
+                to learn and contribute, and I’m excited to face any challenge that helps me continue growing both as a professional 
+                and as a person.
+            </p>
+            <a href="cv.pdf" id = "link_cv" target="_blank" class="mt-8 px-4 py-2 border border-gray-600 hover:border-gray-400 text-sm uppercase">View Currículum Vitae</a>
+        </div>
+    </section>
+</body>
+
+<footer class="fixed bottom-4 left-4 flex flex-col space-y-4">
+    <button id="language-button" class="w-12 h-12 border border-gray-600 rounded-full flex items-center justify-center" onclick="changeLanguage()">ESP</button>
+    <button id="theme-toggle-button" class="w-12 h-12 border border-gray-600 rounded-full flex items-center justify-center" onclick="toggleTheme()">
+        <span id="theme-icon"><i class="fas fa-lightbulb"></i></span>
+    </button>
+</footer>
+</html>
