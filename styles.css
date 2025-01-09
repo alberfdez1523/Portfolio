@@ -47,7 +47,27 @@ body {
 html {
     scroll-behavior: smooth;
 }
+.container {
+    margin: 0 auto;
+    padding: 1rem;
+    max-width: 1200px;
+}
 
+/* Ajusta el tamaño de las imágenes para que sean responsive */
+img {
+    height: auto;
+}
+
+/* Asegúrate de que los elementos flex no se solapen */
+.flex {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Asegúrate de que los elementos dentro de los contenedores flex tengan un margen adecuado */
+.flex > * {
+    margin: 0.5rem;
+}
 #mobile_nav{
     align-items: center;
 }
@@ -85,15 +105,5 @@ html {
     border-radius: 50%;
     border: 5px solid #f4f4f4; 
 }
-#experience {
-    scroll-snap-align: start;
-    height: 100vh;
-    display: grid;
-    justify-content: center;
-    justify-items: center;
-    align-items: center;
-    align-content: center;
-    gap: 40px;
-    animation: fade-section 1s ease-in-out;
-}
+
 
