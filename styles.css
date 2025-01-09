@@ -48,6 +48,18 @@ html {
     scroll-behavior: smooth;
 }
 
+#hamburger-icon {
+    font-size: 1.5rem;
+  }
+  
+  #mobile-menu {
+    display: none;
+  }
+  
+  #mobile-menu.active {
+    display: block;
+  }
+
 .timeline {
     display: grid;
     justify-content: center;

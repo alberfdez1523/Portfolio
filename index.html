@@ -14,26 +14,43 @@
 
 <body class="grid-bg text-white min-h-screen flex flex-col snap-y snap-mandatory overflow-y-scroll">
     <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 flex justify-between items-center px-8 py-4">
-        <ul class="flex space-x-8 md:space-x-12 lg:space-x-16 ml-auto text-xl">
+    <nav class="fixed top-0 left-0 right-0 flex justify-between items-center px-8 py-4 bg-gray-800 z-10">
+        <div class="flex justify-between items-center w-full">
+            <ul class="flex space-x-8 md:space-x-12 lg:space-x-16 ml-auto text-xl">
+                <li><a href="#intro" id="nav-intro" class="hover:text-gray-400">&lt;intro/&gt;</a></li>
+                <li><a href="#experience" id="nav-experience" class="hover:text-gray-400">&lt;experience/&gt;</a></li>
+                <!--<li><a href="#projects" id="nav-projects" class="hover:text-gray-400">&lt;projects/&gt;</a></li>-->
+                <li><a href="#about" id="nav-about" class="hover:text-gray-400">&lt;about/&gt;</a></li>
+            </ul>
+            <div class="flex space-x-4 ml-auto">
+                <a href="https://www.linkedin.com/in/alberto-fern%C3%A1ndez-palomo-38a583267/" target="_blank" class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
+                    <i class="fab fa-linkedin"></i>
+                    <span>LinkedIn</span>
+                </a>
+                <a href="https://github.com/alberfdez1523" target="_blank" class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
+                    <i class="fab fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+            </div>
+        </div>
+    
+        <!-- Hamburguer Menu -->
+        <div class="block lg:hidden">
+            <button id="hamburger-icon" class="text-white">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    
+        <!-- Mobile Menu -->
+        <ul id="mobile-menu" class="lg:hidden absolute top-16 left-0 right-0 bg-gray-800 p-4 space-y-4 text-xl hidden">
             <li><a href="#intro" id="nav-intro" class="hover:text-gray-400">&lt;intro/&gt;</a></li>
             <li><a href="#experience" id="nav-experience" class="hover:text-gray-400">&lt;experience/&gt;</a></li>
             <!--<li><a href="#projects" id="nav-projects" class="hover:text-gray-400">&lt;projects/&gt;</a></li>-->
             <li><a href="#about" id="nav-about" class="hover:text-gray-400">&lt;about/&gt;</a></li>
         </ul>
-        <div class="flex space-x-4 ml-auto">
-            <a href="https://www.linkedin.com/in/alberto-fern%C3%A1ndez-palomo-38a583267/" target="_blank" class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
-                <i class="fab fa-linkedin"></i>
-                <span>LinkedIn</span>
-            </a>
-            <a href="https://github.com/alberfdez1523" target="_blank" class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
-                <i class="fab fa-github"></i>
-                <span>GitHub</span>
-            </a>
-        </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- intro Section -->
     <section id="intro" class="snap-start h-screen flex items-center justify-between px-auto py-auto ml-auto mr-auto space-x-4">
         <!-- Left Content -->
         <div>
