@@ -54,9 +54,9 @@ function toggleTheme() {
     document.body.classList.toggle('light-mode');
 }
 
-const hamburgerIcon = document.getElementById('hamburger-icon');
+const menuButton = document.getElementById('menu-button');
 const mobileMenu = document.getElementById('mobile-menu');
 
-hamburgerIcon.addEventListener('click', () => {
-  mobileMenu.classList.toggle('active');
+menuButton.addEventListener('click', () => {
+    mobileMenu.classList.toggle('hidden');
 });
