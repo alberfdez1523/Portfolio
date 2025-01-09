@@ -24,7 +24,7 @@ function changeLanguage() {
         document.getElementById('about-paragraph-2').textContent = 'Las primeras etapas en la universidad no fueron fáciles para mí. Al principio, no sabía muy bien cómo abordar los estudios de Ingeniería del Software ni cómo encajar en este mundo tan amplio y complejo. Sin embargo, con el tiempo, llegó un momento clave en el que mi perspectiva cambió: aprendí a pensar como un ingeniero, centrándome en la resolución de problemas y en la estructura del pensamiento más que en las habilidades mismas de programación. Este enfoque es algo que considero una de mis mayores fortalezas.';
         document.getElementById('about-paragraph-3').textContent = 'Me apasiona aprender nuevos lenguajes de programación y enfrentarme a retos. Aunque no domine un lenguaje en particular al principio, tengo la capacidad de adaptarme rápidamente y absorber conocimientos como una esponja. Esta misma adaptabilidad me permite integrarme con facilidad tanto en equipos como en entornos prácticos.';
         document.getElementById('about-paragraph-4').textContent = 'En mi tiempo libre, disfruto de mis tres grandes aficiones: los videojuegos, el baloncesto y el cine. Estas pasiones no solo me inspiran, sino que también me ayudan a desconectar y mantener el equilibrio en mi día a día. Estoy convencido de que siempre hay algo nuevo que aprender y aportar, y me entusiasma enfrentar cualquier reto que me ayude a seguir creciendo como profesional y como persona.';
-        document.getElementById('title_about').textContent = 'Sobre Mí';
+        document.getElementById('title_about').textContent = 'SOBRE MÍ';
         currentLanguage = 'es';
     } else {
         console.log('Cambiando idioma:', currentLanguage);
@@ -49,7 +49,7 @@ function changeLanguage() {
         document.getElementById('about-paragraph-2').textContent = 'The early stages of university were not easy for me. At first, I wasn’t quite sure how to approach Software Engineering studies or how to find my footing in such a broad and complex field. However, over time, there was a pivotal moment when my perspective shifted: I learned to think like an engineer, focusing on problem-solving and structured thinking rather than just programming skills. This mindset is something I consider one of my greatest strengths.';
         document.getElementById('about-paragraph-3').textContent = 'I am passionate about learning new programming languages and tackling challenges. Even if I don’t initially master a particular language, I have the ability to adapt quickly and absorb knowledge like a sponge. This adaptability also enables me to integrate seamlessly into both teams and practical environments.';
         document.getElementById('about-paragraph-4').textContent = 'In my free time, I enjoy my three main hobbies: video games, basketball, and cinema. These passions not only inspire me but also help me disconnect and maintain balance in my daily life. I firmly believe there is always something new to learn and contribute, and I’m excited to face any challenge that helps me continue growing both as a professional and as a person.';
-        document.getElementById('title_about').textContent = 'About Me';
+        document.getElementById('title_about').textContent = 'ABOUT ME';
         currentLanguage = 'en';
     }
 }
