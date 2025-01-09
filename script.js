@@ -31,7 +31,7 @@ function changeLanguage() {
         document.getElementById('greeting').innerHTML = 'Hi <span class="animate-wave">👋</span>, I\'m';
         document.getElementById('profession').textContent = 'SOFTWARE ENGINEER';
         document.getElementById('scroll').innerHTML = 'Scroll <span>&#x2193;</span>';
-        document.getElementById('about-title').textContent = 'ABOUT';
+        document.getElementById('about-title').textContent = 'ABOUT ME';
         document.getElementById('about-text').textContent = 'Passionate about computer science, I define myself as a person eager to learn and open to meeting more people in the field with whom I can collaborate.';
         document.getElementById('know-more').textContent = 'Know More';
         document.getElementById('language-button').textContent = 'ESP';
