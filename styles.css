@@ -1393,20 +1393,86 @@ section {
     }
     
     /* Footer responsive */
-    .footer-main {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    .footer-links {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-    
-    .footer-copyright {
-        flex-direction: column;
+    /* Copyright text responsive fix */
+    .footer-copyright-text p {
+        max-width: 100vw;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        white-space: normal;
         text-align: center;
-        gap: 0.5rem;
+        margin: 0 auto;
+    }
+
+    @media (max-width: 480px) {
+        .footer-copyright-text p {
+            font-size: 0.8rem !important;
+            padding: 0 5px !important;
+            max-width: 98vw !important;
+        }
+    }
+    .footer-copyright-text {
+        max-width: 100vw;
+        overflow-wrap: break-word;
+        word-break: break-word;
+        padding: 0 10px;
+        box-sizing: border-box;
+    }
+
+    @media (max-width: 480px) {
+        .footer-copyright-text {
+            font-size: 0.85rem !important;
+            padding: 0 5px !important;
+            text-align: center !important;
+            max-width: 100vw !important;
+        }
+    }
+        .footer-main {
+            flex-direction: column !important;
+            align-items: stretch !important;
+            gap: 2rem !important;
+        }
+
+        .footer-links {
+            display: flex !important;
+            flex-direction: column !important;
+            gap: 1.5rem !important;
+            width: 100% !important;
+        }
+
+        .footer-section {
+            width: 100% !important;
+            margin-bottom: 1.5rem !important;
+        }
+
+        .footer-copyright {
+            flex-direction: column !important;
+            text-align: center !important;
+            gap: 0.5rem !important;
+        }
+
+        .footer-brand {
+            max-width: 100% !important;
+            margin-bottom: 1.5rem !important;
+            text-align: center !important;
+        }
+    .footer {
+        padding: 2rem 0 1rem !important;
+        min-height: 250px !important;
+    }
+    .footer-main {
+        gap: 1rem !important;
+    }
+    .footer-section h4 {
+        font-size: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+    .footer-section ul li a,
+    .footer-contact p,
+    .footer-social .social-link {
+        font-size: 0.9rem !important;
+    }
+    .footer-brand h3 {
+        font-size: 1.1rem !important;
     }
 }
 
