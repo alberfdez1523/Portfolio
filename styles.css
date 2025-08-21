@@ -1302,11 +1302,35 @@ section {
         left: -100%;
         top: 70px;
         flex-direction: column;
-        background-color: rgba(10, 10, 10, 0.95);
-        width: 100%;
+        background: linear-gradient(135deg, #044348 0%, #C9A227 100%) !important;
+        width: 100vw;
+        min-height: calc(100vh - 70px);
         text-align: center;
-        transition: 0.3s;
-        padding: 2rem 0;
+        transition: left 0.3s;
+        padding: 2rem 0 4rem 0;
+        box-shadow: 0 8px 32px rgba(4,67,72,0.15);
+        z-index: 2000;
+    }
+
+    .nav-link {
+        color: #F3EFE3 !important;
+        font-size: 1.2rem !important;
+        font-weight: 600 !important;
+        padding: 1rem 0 !important;
+        margin: 0.5rem 0 !important;
+        border-radius: 8px;
+        transition: background 0.2s, color 0.2s;
+        display: block;
+    }
+    .nav-link:hover, .nav-link.active {
+        background: rgba(243,239,227,0.15) !important;
+        color: #C9A227 !important;
+    }
+    .nav-logo span {
+        color: #C9A227 !important;
+    }
+    .hamburger span {
+        background: #C9A227 !important;
     }
     
     body.dark-mode .nav-menu {
