@@ -1,206 +1,442 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alberto Fernandez</title>
-    <link rel="icon" href="https://media.licdn.com/dms/image/v2/D4D03AQGc9lthXkg9vQ/profile-displayphoto-shrink_100_100/profile-displayphoto-shrink_100_100/0/1712156388987?e=1741824000&v=beta&t=ymgZVCKfWZykdWNv7fl0q5yB8hg5E_lQnzhCegqlwpQ" type="image/x-icon">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <title>Alberto Fernández Palomo - Ingeniero de Software</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
-
-<body class="grid-bg text-white min-h-screen flex flex-col snap-y snap-mandatory overflow-y-scroll">
-    <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 flex justify-between items-center px-auto py-auto ml-auto mr-auto">
-        <ul class="hidden md:flex space-x-8 md:space-x-12 lg:space-x-16 ml-auto text-xl">
-            <li><a href="#intro" id="nav-intro" class="hover:text-gray-400">&lt;intro/&gt;</a></li>
-            <li><a href="#experience" id="nav-experience" class="hover:text-gray-400">&lt;experience/&gt;</a></li>
-            <li><a href="#projects" id="nav-projects" class="hover:text-gray-400">&lt;projects/&gt;</a></li>
-            <li><a href="#about" id="nav-about" class="hover:text-gray-400">&lt;about/&gt;</a></li>
-        </ul>
-        <div class="hidden md:flex space-x-4 ml-auto">
-            <a href="https://www.linkedin.com/in/alberto-fern%C3%A1ndez-palomo-38a583267/" target="_blank" class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
-                <i class="fab fa-linkedin"></i>
-                <span>LinkedIn</span>
-            </a>
-            <a href="https://github.com/alberfdez1523" target="_blank" class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
-                <i class="fab fa-github"></i>
-                <span>GitHub</span>
-            </a>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span>Alberto Fernández</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">INICIO</a></li>
+                <li><a href="#about" class="nav-link">ACERCA</a></li>
+                <li><a href="#skills" class="nav-link">HABILIDADES</a></li>
+                <li><a href="#experience" class="nav-link">EXPERIENCIA</a></li>
+                <li><a href="#projects" class="nav-link">PROYECTOS</a></li>
+                <li><a href="#contact" class="nav-link">CONTACTO</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
-    <div class="md:hidden" id="mobile-menu">
-        <ul id = "mobile_nav" class="flex flex-col space-y-4 mt-4 text-xl">
-            <li><a href="#intro" id="nav-intro" class="hover:text-gray-400">&lt;intro/&gt;</a></li>
-            <li><a href="#experience" id="nav-experience" class="hover:text-gray-400">&lt;experience/&gt;</a></li>
-            <li><a href="#projects" id="nav-projects" class="hover:text-gray-400">&lt;projects/&gt;</a></li>
-            <li><a href="#about" id="nav-about" class="hover:text-gray-400">&lt;about/&gt;</a></li>
-            <li>
-                <a href="https://www.linkedin.com/in/alberto-fern%C3%A1ndez-palomo-38a583267/" target="_blank" class="text-sm border border-gray-600 rounded hover:border-gray-400 flex items-center space-x-2 px-2 py-1">
-                    <i class="fab fa-linkedin"></i>
-                    <span>LinkedIn</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://github.com/alberfdez1523" target="_blank" class="text-sm border border-gray-600 rounded flex space-x-2 px-2 py-1">
-                    <i class="fab fa-github"></i>
-                    <span>GitHub</span>
-                </a>
-            </li>
-        </ul>
-    </div>
 
     <!-- Hero Section -->
-    <div id="intro" class="snap-start min-h-screen flex items-center justify-between px-auto py-auto ml-auto mr-auto space-x-4">
-
-        <!-- Left Content -->
-        <div>
-            <p class="text-2xl" id="greeting">Hi <span class="animate-wave">👋</span>, I'm</p>
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-green-400" id="name">ALBERTO FERNÁNDEZ</h1>
-            <h1 class="text-5xl md:text-7xl lg:text-8xl font-bold text-green-400" id="name">PALOMO</h1>
-            <h2 class="text-3xl md:text-5xl lg:text-7xl font-bold" id="profession">SOFTWARE ENGINEER</h2>
-            <p class="mt-auto text-xl" id="scroll">Scroll <span>&#x2193;</span></p>
+    <section id="home" class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-left">
+                    <div class="hero-image">
+                        <img src="assets/profile-photo.jpg" alt="Alberto Fernández Palomo" class="profile-photo">
+                        <div class="image-border"></div>
+                    </div>
+                </div>
+                <div class="hero-right">
+                    <div class="hero-text">
+                        <div class="hero-greeting">
+                            <span class="wave">👋</span>
+                            <span>Hola, soy <strong>Alberto Fernández Palomo</strong></span>
+                        </div>
+                        <div class="hero-role">
+                            <span class="role-text">INGENIERO DE SOFTWARE</span>
+                        </div>
+                        <p class="hero-subtitle">
+                            Apasionado por la informática, me defino como una persona con ganas de aprender y abierta a conocer más gente del sector con la que poder colaborar.
+                        </p>
+                        <p><a href="assets/cv.pdf" target="_blank" class="cv-link"><i class="fas fa-file-pdf"></i> Currículum Vitae</a></p>
+                    </div>
+                </div>
+                <div class="scroll-indicator">
+                    <span>Desplázate hacia abajo</span>
+                    <div class="scroll-arrow">
+                        <i class="fas fa-arrow-down"></i>
+                    </div>
+                </div>
+            </div>
         </div>
+        <div class="hero-bg-animation"></div>
+    </section>
 
-        <!-- Right Content -->
-        <div class="grid max-w-md">
-            <img src="photo.jpg" alt="Alberto Fernández Palomo" class="rounded-full w-auto h-auto mx-auto mb-4">
-            <h3 class="text-2xl font-bold" id="about-title">ABOUT ME</h3>
-            <p class="text-xl mt-2 leading-relaxed" id="about-text">
-                Passionate about computer science, I define myself as a person eager to learn and open to meeting more people in the field with whom I can collaborate.
-            </p>
-            <a href="#experience" id = "know-more" class="mt-auto ml-auto px-4 py-2 border border-gray-600 hover:border-gray-400 text-sm uppercase text-right">Know More</a>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Acerca de Mí</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <div class="about-intro">
+                        <h3>Alberto Fernández Palomo</h3>
+                        <p class="role">Ingeniero de Software</p>
+                        <p class="quote">"El éxito no es la ausencia de fracaso, sino la respuesta a él."</p>
+                    </div>
+                    <div class="about-description">
+                        <h4>👋 Hola,</h4>
+                        <p>
+                            Soy un apasionado de la informática, me defino como una persona con ganas de aprender y abierta a conocer más gente del sector con la que poder colaborar.
+                        </p>
+                        <div class="what-i-do">
+                            <h5>Lo Que Hago</h5>
+                            <div class="services">
+                                <div class="service">
+                                    <h6>Desarrollo de Software</h6>
+                                    <p>Construcción de aplicaciones escalables y eficientes utilizando tecnologías modernas y mejores prácticas.</p>
+                                </div>
+                                <div class="service">
+                                    <h6>Investigación e Innovación</h6>
+                                    <p>Explorando tecnologías de vanguardia como Quantum Machine Learning e IA.</p>
+                                </div>
+                                <div class="service">
+                                    <h6>Consultoría IT</h6>
+                                    <p>Diseñando y optimizando soluciones IT para requisitos empresariales complejos.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-story">
+                            <div class="story-paragraph" data-animate="fade-up">
+                                <p>
+                                    Siempre me ha atraído la informática, pero no fue hasta que profundicé más en la programación que me di cuenta de que este era realmente mi lugar: el campo donde quiero seguir creciendo y aprendiendo.
+                                </p>
+                            </div>
+                            
+                            <div class="story-paragraph" data-animate="fade-up">
+                                <p>
+                                    Las primeras etapas de la universidad no fueron fáciles para mí. Al principio, no estaba muy seguro de cómo abordar los estudios de Ingeniería de Software o cómo encontrar mi lugar en un campo tan amplio y complejo. Sin embargo, con el tiempo, hubo un momento crucial cuando mi perspectiva cambió: aprendí a pensar como un ingeniero, centrándome en la resolución de problemas y el pensamiento estructurado en lugar de solo las habilidades de programación. Esta mentalidad es algo que considero una de mis mayores fortalezas.
+                                </p>
+                            </div>
+                            
+                            <div class="story-paragraph" data-animate="fade-up">
+                                <p>
+                                    Soy apasionado por aprender nuevos lenguajes de programación y enfrentar desafíos. Aunque no domine inicialmente un lenguaje particular, tengo la capacidad de adaptarme rápidamente y absorber conocimiento como una esponja. Esta adaptabilidad también me permite integrarme perfectamente tanto en equipos como en entornos prácticos.
+                                </p>
+                            </div>
+                            
+                            <div class="story-paragraph" data-animate="fade-up">
+                                <p>
+                                    En mi tiempo libre, disfruto de mis tres principales aficiones: videojuegos, baloncesto y cine. Estas pasiones no solo me inspiran sino que también me ayudan a desconectar y mantener el equilibrio en mi vida diaria. Creo firmemente que siempre hay algo nuevo que aprender y contribuir, y estoy emocionado de enfrentar cualquier desafío que me ayude a seguir creciendo tanto como profesional como persona.
+                                </p>
+                            </div>
+                        </div>
+                        <p class="cta-text" data-animate="fade-up">"¡Conectemos y creemos algo increíble juntos! 🚀"</p>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Habilidades Técnicas</h2>
+                <p class="section-subtitle">
+                    Mi experiencia en tecnologías modernas me permite crear soluciones eficientes y escalables.
+                </p>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-python"></i>
+                    </div>
+                    <h3>Python</h3>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-html5"></i>
+                    </div>
+                    <h3>HTML</h3>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-css3-alt"></i>
+                    </div>
+                    <h3>CSS</h3>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-react"></i>
+                    </div>
+                    <h3>React</h3>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>SQL</h3>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fab fa-java"></i>
+                    </div>
+                    <h3>Java</h3>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>C++</h3>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <h3>Django</h3>
+                </div>
+                <div class="skill-card">
+                    <div class="skill-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>PennyLane</h3>
+                </div>
+            </div>
+            <div class="expertise-areas">
+                <h3>Áreas de Especialización</h3>
+                <div class="expertise-grid">
+                    <div class="expertise-card">
+                        <h4>Desarrollo de Software</h4>
+                        <p>Especialización en frameworks modernos y librerías para construir aplicaciones escalables con código limpio y mantenible.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>Consultoría IT</h4>
+                        <p>Asesoramiento en la implementación de soluciones tecnológicas y optimización de procesos empresariales.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <h4>Investigación e Innovación</h4>
+                        <p>Investigación en tecnologías emergentes como Quantum Machine Learning y su comparación con métodos clásicos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Experience Section -->
-    <div id="experience" class="experience flex flex-col px-auto py-auto my-16">
-        <h2 class="text-4xl md:text-6xl lg:text-8xl font-bold text-center mb-8" id="experience-title">EXPERIENCE</h2>
-        <div id="languages" class="flex flex-wrap justify-center gap-4 mb-8">
-            <a class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
-                <i class="fab fa-python text-blue-500"></i>
-                <span>Python</span>
-            </a>
-            <a class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
-                <i class="fab fa-html5 text-orange-500"></i>
-                <span>HTML</span>
-            </a>
-            <a class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
-                <i class="fab fa-css3-alt text-blue-600"></i>
-                <span>CSS</span>
-            </a>
-            <a class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
-                <i class="fab fa-react text-blue-400"></i>
-                <span>React</span>
-            </a>
-            <a class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
-                <i class="fas fa-database text-yellow-500"></i>
-                <span>SQL</span>
-            </a>
-            <a class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
-                <i class="fab fa-java text-red-600"></i>
-                <span>Java</span>
-            </a>
-            <a class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
-                <i class="fas fa-code text-green-600"></i>
-                <span>C++</span>
-            </a>
-            <a class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
-                <i class="fab fa-js-square text-yellow-400"></i>
-                <span>Django</span>
-            </a>
-            <a class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2">
-                <i class="fab fa-css3-alt text-teal-500"></i>
-                <span>TailwindCSS</span>
-            </a>
-        </div>
-        <div id class="flex flex-col space-y-4 mt-8 justify-content: space-around my-16">
-            <div class="timeline w-full max-w-4xl mx-auto">
+    <section id="experience" class="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Experiencia</h2>
+            </div>
+            <div class="timeline">
                 <div class="timeline-item">
-                    <div class="timeline-content p-4">
-                        <h3 class="text-2xl font-semibold text-center" id="job1_title">Database Operator</h3>
-                        <p class="text-sm text-gray-400 text-center" id="job1_period">May 2024 - July 2024</p>
-                        <p class="text-base text-center mt-2 mx-4" id="job1_description">
-                            Alfotrailer, S.L. / Assistance in solving problems related to databases and implementing solutions. 
-                            Updating and modifying records in the database.
-                        </p>
-                    </div>
-                <div class="timeline-item">        
-                    <div class="timeline-content p-4">
-                        <h3 class="text-2xl font-semibold text-center" id="job2_title">Researcher</h3>
-                        <p class="text-sm text-gray-400 text-center" id="job2_period">February 2025 - May 2025</p>
-                        <p class="text-base text-center mt-2 mx-4" id="job2_description">
-                            SPILab by Quercus / Development of comparative work between Quantum Machine Learning and Classical Machine Learning. 
-                            Implementation of Quantum Machine Learning algorithms in Qiskit and Pennylane and comparison with classical algorithms.
-                        </p>
+                    <div class="timeline-date">Mayo 2024 - Julio 2024</div>
+                    <div class="timeline-content">
+                        <h3>Operador de Base de Datos</h3>
+                        <h4>Alfotrailer, S.L.</h4>
+                        <p>Asistencia en la resolución de problemas relacionados con bases de datos e implementación de soluciones. Actualización y modificación de registros en la base de datos.</p>
+                        <div class="timeline-skills">
+                            <span>SQL</span>
+                            <span>Gestión de Bases de Datos</span>
+                            <span>Resolución de Problemas</span>
+                        </div>
                     </div>
                 </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Febrero 2025 - Mayo 2025</div>
+                    <div class="timeline-content">
+                        <h3>Investigador</h3>
+                        <h4>SPILab by Quercus</h4>
+                        <p>Desarrollo de trabajo comparativo entre Quantum Machine Learning y Classical Machine Learning. Implementación de algoritmos de Quantum Machine Learning en Qiskit y Pennylane y comparación con algoritmos clásicos.</p>
+                        <div class="timeline-skills">
+                            <span>Python</span>
+                            <span>Qiskit</span>
+                            <span>Pennylane</span>
+                            <span>Machine Learning</span>
+                            <span>Investigación</span>
+                            <span>Computación Cuántica</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Agosto 2025 - Presente</div>
+                    <div class="timeline-content">
+                        <h3>Consultor IT</h3>
+                        <h4>Aurea Innovación</h4>
+                        <p>Servicios de consultoría IT e innovación tecnológica. Desarrollo completo de proyectos enfocados en transformación digital e implementación de soluciones tecnológicas modernas. Con sede en Badajoz, Extremadura, España.</p>
+                        <div class="timeline-skills">
+                            <span>Consultoría IT</span>
+                            <span>Transformación Digital</span>
+                            <span>Gestión de Proyectos</span>
+                            <span>Innovación</span>
+                            <span>Soluciones Tecnológicas</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
-        <div class="flex justify-center items-center space-x-4 mt-8">
-            <a id="link_experience" href="https://www.linkedin.com/in/alberto-fern%C3%A1ndez-palomo-38a583267/details/experience/" target="_blank" class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2 uppercase">View more experience</a>
-            <a id="link_education" href="https://www.linkedin.com/in/alberto-fern%C3%A1ndez-palomo-38a583267/details/education/" target="_blank" class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2 uppercase">View my education</a>
-        </div>
-    </div>
+    </section>
 
     <!-- Projects Section -->
-    <div id="projects" class="experience flex flex-col px-auto py-auto">
-        <h2 class="text-4xl md:text-6xl lg:text-8xl font-bold text-center mb-8" id="project-title">PROJECTS</h2>
-        <div id class="flex flex-col space-y-4 mt-8 justify-content: space-around ">
-            <div class="timeline w-full max-w-4xl mx-auto">
-                <div class="timeline-item">
-                    <div class="timeline-content p-4">
-                        <h3 class="text-2xl font-semibold text-center" id="project1_title">Quantum Machine Learning vs Classical Machine Learning. A comparative analysis.</h3>
-                        <p class="text-base text-center mt-2 mx-4" id="project1_description">
-                            Research on Quantum Machine Learning and subsequent comparative analysis with Classical Machine Learning.
-                        </p>
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Mis Proyectos</h2>
+                <p class="section-subtitle">
+                    Una colección de mis trabajos recientes que demuestran mis habilidades en desarrollo de software, investigación y resolución de problemas.
+                </p>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://github.com/alberfdez1523/QMLvsML" target="_blank" class="project-link">
+                                    <i class="fab fa-github"></i>
+                                    <span>Code</span>
+                                </a>
+                            </div>
+                        </div>
                     </div>
-                    <div class="flex justify-center items-center space-x-2 mt-2">
-                        <a id="link_project1" href="https://github.com/alberfdez15/QMLvsML" 
-                        target="_blank" class="text-sm border border-gray-600 px-4 py-2 rounded hover:border-gray-400 flex items-center space-x-2 uppercase">View the repository</a>
+                    <div class="project-content">
+                        <h3>Machine Learning Cuántico vs Machine Learning Clásico</h3>
+                        <p>Investigación sobre Machine Learning Cuántico y análisis comparativo posterior con Machine Learning Clásico. Un estudio integral que implementa algoritmos QML en Qiskit y Pennylane.</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>Qiskit</span>
+                            <span>Pennylane</span>
+                            <span>Machine Learning</span>
+                            <span>Computación Cuántica</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <div class="project-image">
+                        <div class="project-overlay">
+                            <div class="project-links">
+                                <a href="https://alberfdez1523.github.io/Portfolio/" target="_blank" class="project-link">
+                                    <i class="fas fa-external-link-alt"></i>
+                                    <span>Demo</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Portafolio de Desarrollo Web</h3>
+                        <p>Un sitio web de portafolio moderno y responsivo que muestra mis habilidades y proyectos, construido con HTML, CSS, JavaScript y animaciones GSAP.</p>
+                        <div class="project-tech">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                            <span>GSAP</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- About me -->
-    <div id="about" class="about px-4 py-8 my-16">
-        <h2 id ="title_about" class="text-4xl md:text-6xl lg:text-8xl font-bold text-center mb-8">ABOUT ME</h2>
-        <div class="flex flex-col items-center space-y-4">
-            <p id="about-paragraph-1" class="text-base md:text-lg lg:text-xl text-center max-w-4xl">
-                I have always been drawn to computer science, but it wasn't until I delved deeper into programming that I realized this 
-                was truly my place—the field where I want to keep growing and learning. 
-            </p>
-            <p id="about-paragraph-2" class="text-base md:text-lg lg:text-xl text-center max-w-4xl">
-                The early stages of university were not easy for me. At first, I wasn’t quite sure how to approach Software Engineering 
-                studies or how to find my footing in such a broad and complex field. However, over time, there was a pivotal moment when 
-                my perspective shifted: I learned to think like an engineer, focusing on problem-solving and structured thinking rather 
-                than just programming skills. This mindset is something I consider one of my greatest strengths.            
-            </p>
-            <p id="about-paragraph-3" class="text-base md:text-lg lg:text-xl text-center max-w-4xl">
-                I am passionate about learning new programming languages and tackling challenges. Even if I don’t initially master 
-                a particular language, I have the ability to adapt quickly and absorb knowledge like a sponge. This adaptability 
-                also enables me to integrate seamlessly into both teams and practical environments.
-            </p>
-            <p id="about-paragraph-4" class="text-base md:text-lg lg:text-xl text-center max-w-4xl">
-                In my free time, I enjoy my three main hobbies: video games, basketball, and cinema. These passions not only inspire 
-                me but also help me disconnect and maintain balance in my daily life. I firmly believe there is always something new 
-                to learn and contribute, and I’m excited to face any challenge that helps me continue growing both as a professional 
-                and as a person.
-            </p>
-            <a href="cv.pdf" id = "link_cv" target="_blank" class="mt-8 px-4 py-2 border border-gray-600 hover:border-gray-400 text-sm uppercase">View Currículum Vitae</a>
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contacto</h2>
+                <p class="section-subtitle">
+                    No dudes en contactarme si estás buscando un desarrollador, tienes una pregunta o simplemente quieres conectar.
+                </p>
+            </div>
+                <div class="contact-info">
+                    <h3>Conecta Conmigo</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>alberfdez2000@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Ubicación</h4>
+                                <p>España</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/alberto-fern%C3%A1ndez-palomo-38a583267/" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/alberfdez1523" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</body>
+    </section>
 
-<footer class="fixed bottom-4 left-4 flex flex-col space-y-4">
-    <button id="language-button" class="w-12 h-12 border border-gray-600 rounded-full flex items-center justify-center" onclick="changeLanguage()">ESP</button>
-    <button id="theme-toggle-button" class="w-12 h-12 border border-gray-600 rounded-full flex items-center justify-center" onclick="toggleTheme()">
-        <span id="theme-icon"><i class="fas fa-lightbulb"></i></span>
-    </button>
-</footer>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-main">
+                    <div class="footer-brand">
+                        <h3>Alberto Fernández Palomo</h3>
+                        
+                    </div>
+                    
+                    <div class="footer-links">
+                        <div class="footer-section">
+                            <h4>Navegar</h4>
+                            <ul>
+                                <li><a href="#home">Inicio</a></li>
+                                <li><a href="#about">Acerca</a></li>
+                                <li><a href="#skills">Habilidades</a></li>
+                                <li><a href="#experience">Experiencia</a></li>
+                                <li><a href="#projects">Proyectos</a></li>
+                                <li><a href="#contact">Contacto</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="footer-section">
+                            <h4>Conectar</h4>
+                            <div class="footer-social">
+                                <a href="https://www.linkedin.com/in/alberto-fern%C3%A1ndez-palomo-38a583267/" target="_blank" class="social-link" aria-label="LinkedIn" target="_blank">
+                                    <i class="fab fa-linkedin"></i>
+                                </a>
+                                <a href="https://github.com/alberfdez1523" class="social-link" aria-label="GitHub" target="_blank">
+                                    <i class="fab fa-github"></i>
+                                    
+                                </a>
+                                <a href="mailto:alberfdez2000@gmail.com" class="social-link" aria-label="Email">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="footer-section">
+                            <h4>Información de Contacto</h4>
+                            <div class="footer-contact">
+                                <p><i class="fas fa-map-marker-alt"></i> España</p>
+                                <p><i class="fas fa-envelope"></i> alberfdez2000@gmail.com</p>
+                                <p><a href="assets/cv.pdf" target="_blank"><i class="fas fa-file-pdf"></i> Currículum Vitae</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="footer-bottom">
+                    <div class="footer-divider"></div>
+                    <div class="footer-copyright">
+                        <p>&copy; 2025 Alberto Fernández Palomo. Todos los derechos reservados. | Creado con <i class="fas fa-heart"></i> precisión y elegancia (Y ☕)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
 </html>
