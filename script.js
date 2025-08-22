@@ -74,6 +74,9 @@ if (document.readyState === 'loading') {
 
 // Main initialization when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
+    // Add loading class immediately to hide content
+    document.body.classList.add('loading');
+    
     // Register GSAP plugins
     if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
         gsap.registerPlugin(ScrollTrigger);
@@ -96,11 +99,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize navbar effects only (no conflicting scroll)
     initializeNavbarEffects();
-    
-    // Initialize cursor effect on desktop
-    if (window.innerWidth > 768) {
-        initializeCursor();
-    }
     
     // Add scroll to top button
     addScrollToTop();
@@ -395,14 +393,14 @@ function animateHeroSection() {
         ease: 'power3.out'
     }, '-=0.3')
     
-    // CV Link with bounce effect
+    // CV Link aparece al mismo tiempo que el resto del hero
     .to('.cv-link', {
         opacity: 1,
         y: 0,
         scale: 1,
         duration: 0.8,
-        ease: 'back.out(1.7)'
-    }, '-=0.2')
+        ease: 'power3.out'
+    }, '-=0.6')
     
     // Scroll indicator
     .to('.scroll-indicator', {
@@ -884,44 +882,6 @@ function showNotification(message, type) {
     }, 3000);
 }
 
-// Cursor effect (optional enhancement)
-function initializeCursor() {
-    const cursor = document.createElement('div');
-    cursor.className = 'custom-cursor';
-    document.body.appendChild(cursor);
-    
-    Object.assign(cursor.style, {
-        position: 'fixed',
-        width: '20px',
-        height: '20px',
-        backgroundColor: '#044348',
-        borderRadius: '50%',
-        pointerEvents: 'none',
-        zIndex: '9999',
-        transform: 'translate(-50%, -50%)',
-        transition: 'transform 0.1s ease'
-    });
-    
-    document.addEventListener('mousemove', (e) => {
-        gsap.to(cursor, {
-            x: e.clientX,
-            y: e.clientY,
-            duration: 0.1
-        });
-    });
-    
-    // Scale cursor on hover
-    const hoverElements = document.querySelectorAll('a, button, .skill-card, .project-card');
-    hoverElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            gsap.to(cursor, { scale: 1.5, duration: 0.2 });
-        });
-        el.addEventListener('mouseleave', () => {
-            gsap.to(cursor, { scale: 1, duration: 0.2 });
-        });
-    });
-}
-
 // Scroll to top functionality
 function addScrollToTop() {
     const scrollBtn = document.createElement('button');
@@ -977,7 +937,7 @@ window.addEventListener('load', () => {
 });
 
 function createModernLoader() {
-    // Add loading class to body to hide content
+    // Add loading class to body to hide content immediately
     document.body.classList.add('loading');
     
     const loader = document.createElement('div');
@@ -1046,7 +1006,9 @@ function addModernLoaderStyles() {
     styles.textContent = `
         /* Hide page content during loading */
         body.loading > *:not(.modern-loader) {
-            opacity: 0;
+            opacity: 0 !important;
+            pointer-events: none !important;
+            visibility: hidden !important;
             transform: translateY(20px);
             transition: opacity 0.6s ease, transform 0.6s ease;
         }
@@ -1402,6 +1364,7 @@ function animateModernLoader(loader) {
 function revealPageContent() {
     // Remove loading class to reveal content
     document.body.classList.remove('loading');
+    document.body.classList.add('loaded');
     
     // Reveal content with smooth stagger
     gsap.to('body > *:not(.modern-loader)', {
@@ -1442,119 +1405,26 @@ function initializeStoryAnimations() {
     
     if (storyParagraphs.length === 0) return;
     
-    // Enhanced story paragraph animations with modern effects
+    // Set initial state for all story paragraphs
+    gsap.set(storyParagraphs, {
+        opacity: 0,
+        y: 50,
+        scale: 0.95
+    });
+    
+    // Create scroll-triggered animations for each paragraph
     storyParagraphs.forEach((paragraph, index) => {
-        // Check if paragraph is already visible (fallback for immediate visibility)
-        const isInViewport = paragraph.getBoundingClientRect().top < window.innerHeight;
-        
-        // Only animate if not immediately visible, otherwise keep visible
-        if (!isInViewport) {
-            // Set initial state only for elements not in viewport
-            gsap.set(paragraph, {
-                opacity: 0,
-                y: 60,
-                scale: 0.95,
-                rotationX: 10
-            });
-        } else {
-            // Ensure immediately visible elements are properly set
-            gsap.set(paragraph, {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-                rotationX: 0
-            });
-            // Add animate class immediately for visible elements
-            paragraph.classList.add('animate');
-        }
-        
-        // Create scroll-triggered animation
-        ScrollTrigger.create({
-            trigger: paragraph,
-            start: 'top 85%',
-            end: 'bottom 15%',
-            onEnter: () => {
-                gsap.to(paragraph, {
-                    opacity: 1,
-                    y: 0,
-                    scale: 1,
-                    rotationX: 0,
-                    duration: 1.2,
-                    delay: index * 0.15,
-                    ease: 'power3.out'
-                });
-                
-                // Add typing effect to the text
-                const textElement = paragraph.querySelector('p');
-                if (textElement) {
-                    // Add animate class for CSS effects
-                    paragraph.classList.add('animate');
-                    
-                    // Add subtle parallax effect
-                    gsap.to(textElement, {
-                        yPercent: -5,
-                        ease: 'none',
-                        scrollTrigger: {
-                            trigger: paragraph,
-                            start: 'top bottom',
-                            end: 'bottom top',
-                            scrub: 1
-                        }
-                    });
-                    
-                    // Add glow effect on enter
-                    gsap.to(textElement, {
-                        boxShadow: '0 8px 32px rgba(100, 255, 218, 0.1)',
-                        duration: 0.8,
-                        ease: 'power2.out'
-                    });
-                }
-            },
-            onLeave: () => {
-                const textElement = paragraph.querySelector('p');
-                if (textElement) {
-                    gsap.to(textElement, {
-                        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.05)',
-                        duration: 0.4,
-                        ease: 'power2.out'
-                    });
-                }
-            },
-            toggleActions: 'play none none reverse'
-        });
-        
-        // Add hover interactions
-        paragraph.addEventListener('mouseenter', () => {
-            gsap.to(paragraph, {
-                scale: 1.02,
-                duration: 0.3,
-                ease: 'power2.out'
-            });
-            
-            const textElement = paragraph.querySelector('p');
-            if (textElement) {
-                gsap.to(textElement, {
-                    boxShadow: '0 12px 40px rgba(100, 255, 218, 0.15)',
-                    duration: 0.3,
-                    ease: 'power2.out'
-                });
-            }
-        });
-        
-        paragraph.addEventListener('mouseleave', () => {
-            gsap.to(paragraph, {
-                scale: 1,
-                duration: 0.3,
-                ease: 'power2.out'
-            });
-            
-            const textElement = paragraph.querySelector('p');
-            if (textElement) {
-                gsap.to(textElement, {
-                    boxShadow: '0 8px 32px rgba(100, 255, 218, 0.1)',
-                    duration: 0.3,
-                    ease: 'power2.out'
-                });
+        gsap.to(paragraph, {
+            opacity: 1,
+            y: 0,
+            scale: 1,
+            duration: 1,
+            ease: 'power3.out',
+            scrollTrigger: {
+                trigger: paragraph,
+                start: 'top 80%',
+                end: 'bottom 20%',
+                toggleActions: 'play none none reverse'
             }
         });
     });

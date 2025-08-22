@@ -3,6 +3,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor: url('./assets/cursor.png'), auto;
 }
 
 html {
@@ -16,6 +17,7 @@ body {
     background-color: #F3EFE3;
     overflow-x: hidden;
     position: relative;
+    
 }
 
 /* Animated Background */
@@ -1285,6 +1287,43 @@ section {
 
 .footer-tagline .fa-heart {
     color: #ff6b9d !important;
+}
+
+/* Preloader styles to hide content before loader */
+body {
+    overflow: hidden;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+body.loading {
+    overflow: hidden;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+body.loading * {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+}
+
+body.loading .modern-loader,
+body.loading .modern-loader * {
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+body.loaded {
+    overflow: visible;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+body.loaded * {
+    visibility: visible !important;
+    pointer-events: auto !important;
 }
 
 /* Responsive Design */
