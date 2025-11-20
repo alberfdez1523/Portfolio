@@ -451,6 +451,8 @@ section {
     padding: 0;
     position: relative;
     z-index: 1;
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 1000px;
 }
 
 .section-header {
@@ -644,7 +646,8 @@ section {
 }
 
 /* Experience Section */
-.experience {
+.experience,
+.education {
     background: transparent;
 }
 
