@@ -11,7 +11,6 @@ const projects = [
     tags: ['Python', 'Qiskit', 'Pennylane', 'Machine Learning'],
     image: '/assets/codigo.png',
     github: 'https://github.com/alberfdez1523/QMLvsML',
-    demo: '#',
   },
   {
     title: 'Portafolio de Desarrollo Web',
@@ -19,7 +18,6 @@ const projects = [
     tags: ['HTML', 'CSS', 'JavaScript', 'GSAP'],
     image: '/assets/codigo.png',
     github: 'https://github.com/alberfdez1523/Portfolio',
-    demo: 'https://alberfdez1523.github.io/Portfolio/',
   },
 ];
 
@@ -87,14 +85,6 @@ export default function Projects() {
                     className="p-2 bg-gray-900 rounded-full text-white hover:text-blue-400 transition-colors hover:scale-110 transform duration-200"
                   >
                     <Github size={24} />
-                  </a>
-                  <a 
-                    href={project.demo} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="p-2 bg-gray-900 rounded-full text-white hover:text-blue-400 transition-colors hover:scale-110 transform duration-200"
-                  >
-                    <ExternalLink size={24} />
                   </a>
                 </div>
               </div>

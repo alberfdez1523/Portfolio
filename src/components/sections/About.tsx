@@ -48,7 +48,7 @@ export default function About() {
         <div className="flex flex-col md:flex-row items-center gap-12">
           <div ref={imageRef} className="md:w-1/2">
             <img 
-              src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" 
+              src="/assets/Imagen-TFG.jpg" 
               alt="Coding workspace" 
               className="rounded-lg shadow-xl hover:scale-105 transition-transform duration-500"
             />
