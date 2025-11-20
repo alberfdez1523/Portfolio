@@ -1,0 +1,28 @@
+@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap');
+@import "tailwindcss";
+
+@font-face {
+  font-family: 'Lena';
+  src: url('/fonts/Lena.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme {
+  --color-primary: #3b82f6;
+  --color-secondary: #10b981;
+  --color-dark: #0f172a;
+  --color-light: #f8fafc;
+  
+  --font-sans: 'Satoshi', sans-serif;
+  --font-display: 'Lena', sans-serif;
+}
+
+body {
+  @apply bg-gray-900 text-white font-sans;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-display;
+}
