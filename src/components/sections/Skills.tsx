@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { translations } from '../../i18n/translations';
 
 const skills = [
   { name: 'Python', level: 90, category: 'Programming' },
@@ -15,7 +16,12 @@ const skills = [
   { name: 'Qiskit', level: 65, category: 'Quantum' },
 ];
 
-export default function Skills() {
+interface SkillsProps {
+  lang?: 'es' | 'en';
+}
+
+export default function Skills({ lang = 'es' }: SkillsProps) {
+  const t = translations[lang].skills;
   const containerRef = useRef(null);
   const titleRef = useRef(null);
   const skillsRef = useRef<HTMLDivElement[]>([]);
@@ -68,10 +74,10 @@ export default function Skills() {
   };
 
   return (
-    <section id="skills" ref={containerRef} className="py-20 bg-gray-900">
+    <section id="skills" ref={containerRef} className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={titleRef} className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Habilidades Técnicas</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">{t.title}</h2>
           <div className="w-20 h-1 bg-blue-500 mx-auto rounded-full"></div>
         </div>
 
@@ -80,13 +86,13 @@ export default function Skills() {
             <div
               key={skill.name}
               ref={addToSkillsRef}
-              className="bg-gray-800 p-6 rounded-xl hover:bg-gray-750 transition-colors border border-gray-700 hover:border-blue-500/50 group"
+              className="bg-white dark:bg-gray-800 p-6 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors border border-gray-200 dark:border-gray-700 hover:border-blue-500/50 group shadow-sm dark:shadow-none"
             >
               <div className="flex justify-between items-end mb-2">
-                <h3 className="text-xl font-semibold text-white group-hover:text-blue-400 transition-colors">{skill.name}</h3>
-                <span className="text-sm text-gray-400">{skill.category}</span>
+                <h3 className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{skill.name}</h3>
+                <span className="text-sm text-gray-500 dark:text-gray-400">{skill.category}</span>
               </div>
-              <div className="w-full bg-gray-700 rounded-full h-2.5 overflow-hidden">
+              <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden">
                 <div className="progress-bar bg-blue-600 h-2.5 rounded-full w-0"></div>
               </div>
             </div>

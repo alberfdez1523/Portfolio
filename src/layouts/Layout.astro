@@ -18,8 +18,163 @@ const { title, description = "Portfolio de Alberto Fernández - Desarrollador We
 		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<script is:inline>
+			// Script de bloqueo para evitar FOUC (Flash of Unstyled Content)
+			// Se ejecuta inmediatamente antes de que el navegador renderice el body
+			const savedTheme = localStorage.getItem('theme');
+			// Por defecto dark si no hay preferencia guardada
+			const initialIsDark = savedTheme === 'dark' || (!savedTheme && true); 
+			
+			if (initialIsDark) {
+				document.documentElement.classList.add('dark');
+			} else {
+				document.documentElement.classList.remove('dark');
+			}
+		</script>
 	</head>
 	<body class="bg-gray-900 text-white antialiased">
 		<slot />
+
+		<!-- Contenedor de Botones Flotantes -->
+		<div class="fixed top-6 right-6 z-50 flex items-center gap-4">
+			<!-- Botón de Tema (Dark/Light) -->
+			<button
+				id="theme-toggle"
+				class="flex h-12 w-12 items-center justify-center rounded-full shadow-lg ring-1 transition-all hover:scale-110 bg-white text-gray-900 ring-gray-200 hover:bg-gray-100 dark:bg-gray-800 dark:text-white dark:ring-white/10 dark:hover:bg-gray-700"
+				aria-label="Cambiar tema"
+			>
+				<!-- Icono Sol (Light Mode) -->
+				<svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+				</svg>
+				<!-- Icono Luna (Dark Mode) -->
+				<svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+				</svg>
+			</button>
+
+			<!-- Botón Flotante de Idioma -->
+			<button 
+				id="lang-toggle" 
+				class="group relative flex h-12 w-28 items-center rounded-full bg-gray-800 p-1 shadow-[0_0_15px_rgba(0,0,0,0.3)] ring-1 ring-white/10 transition-all hover:scale-105 hover:ring-blue-500/50 dark:bg-gray-800 bg-white ring-black/5"
+				aria-label="Cambiar idioma"
+			>
+				<!-- Fondo deslizante -->
+				<div 
+					id="toggle-bg" 
+					class="absolute left-1 h-10 w-[50px] rounded-full bg-gradient-to-r from-blue-600 to-blue-500 shadow-sm transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
+				></div>
+
+				<!-- Bandera ES -->
+				<span 
+					id="flag-es" 
+					class="relative z-10 w-1/2 flex justify-center transition-all duration-300"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 rounded-full shadow-sm object-cover" viewBox="0 0 640 480">
+						<path fill="#aa151b" d="M0 0h640v480H0z"/>
+						<path fill="#f1bf00" d="M0 120h640v240H0z"/>
+					</svg>
+				</span>
+
+				<!-- Bandera EN -->
+				<span 
+					id="flag-en" 
+					class="relative z-10 w-1/2 flex justify-center transition-all duration-300"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 rounded-full shadow-sm object-cover" viewBox="0 0 640 480">
+						<path fill="#012169" d="M0 0h640v480H0z"/>
+						<path fill="#FFF" d="M75 0l244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z"/>
+						<path fill="#C8102E" d="M424 281l216 159v40L369 281h55zm-184 20l6 35L54 480H0l240-179zM640 0v3L391 191l2-44L590 0h50zM0 0l239 176h-60L0 42V0z"/>
+						<path fill="#FFF" d="M241 0v480h160V0H241zM0 160v160h640V160H0z"/>
+						<path fill="#C8102E" d="M0 193v96h640v-96H0zM273 0v480h96V0h-96z"/>
+					</svg>
+				</span>
+			</button>
+		</div>
+
+		<script>
+			// --- Lógica de Idioma ---
+			const toggleBtn = document.getElementById('lang-toggle');
+			const toggleBg = document.getElementById('toggle-bg');
+			const flagEs = document.getElementById('flag-es');
+			const flagEn = document.getElementById('flag-en');
+			
+			const currentPath = window.location.pathname;
+			let isEnglish = currentPath.startsWith('/en');
+
+			const updateLangUI = (english: boolean) => {
+				if (english) {
+					toggleBg!.style.transform = 'translateX(100%)';
+					
+					// ES inactivo
+					flagEs!.classList.add('opacity-50', 'grayscale');
+					flagEs!.classList.remove('opacity-100', 'grayscale-0');
+					
+					// EN activo
+					flagEn!.classList.add('opacity-100', 'grayscale-0');
+					flagEn!.classList.remove('opacity-50', 'grayscale');
+				} else {
+					toggleBg!.style.transform = 'translateX(0)';
+					
+					// ES activo
+					flagEs!.classList.add('opacity-100', 'grayscale-0');
+					flagEs!.classList.remove('opacity-50', 'grayscale');
+					
+					// EN inactivo
+					flagEn!.classList.add('opacity-50', 'grayscale');
+					flagEn!.classList.remove('opacity-100', 'grayscale-0');
+				}
+			};
+
+			updateLangUI(isEnglish);
+
+			toggleBtn?.addEventListener('click', () => {
+				const newLangIsEnglish = !isEnglish;
+				if (newLangIsEnglish) {
+					const newPath = '/en' + (currentPath === '/' ? '' : currentPath);
+					window.location.href = newPath;
+				} else {
+					const newPath = currentPath.replace(/^\/en/, '') || '/';
+					window.location.href = newPath;
+				}
+			});
+
+			// --- Lógica de Tema (Dark/Light) ---
+			const themeBtn = document.getElementById('theme-toggle');
+			const iconSun = document.getElementById('icon-sun');
+			const iconMoon = document.getElementById('icon-moon');
+
+			// Función para establecer el tema (UI y LocalStorage)
+			const setTheme = (isDark: boolean) => {
+				if (isDark) {
+					document.documentElement.classList.add('dark');
+					localStorage.setItem('theme', 'dark');
+					iconMoon!.classList.remove('hidden');
+					iconSun!.classList.add('hidden');
+				} else {
+					document.documentElement.classList.remove('dark');
+					localStorage.setItem('theme', 'light');
+					iconSun!.classList.remove('hidden');
+					iconMoon!.classList.add('hidden');
+				}
+			};
+
+			// Sincronizar UI con el estado actual (ya establecido en head)
+			const currentIsDark = document.documentElement.classList.contains('dark');
+			
+			// Solo actualizamos los iconos, no la clase del documento (ya está correcta)
+			if (currentIsDark) {
+				iconMoon!.classList.remove('hidden');
+				iconSun!.classList.add('hidden');
+			} else {
+				iconSun!.classList.remove('hidden');
+				iconMoon!.classList.add('hidden');
+			}
+
+			themeBtn?.addEventListener('click', () => {
+				const isDark = document.documentElement.classList.contains('dark');
+				setTheme(!isDark);
+			});
+		</script>
 	</body>
 </html>

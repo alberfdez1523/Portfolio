@@ -2,8 +2,14 @@ import React, { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import { translations } from '../../i18n/translations';
 
-export default function About() {
+interface AboutProps {
+  lang?: 'es' | 'en';
+}
+
+export default function About({ lang = 'es' }: AboutProps) {
+  const t = translations[lang].about;
   const containerRef = useRef(null);
   const titleRef = useRef(null);
   const imageRef = useRef(null);
@@ -38,10 +44,10 @@ export default function About() {
   }, { scope: containerRef });
 
   return (
-    <section id="about" ref={containerRef} className="py-20 bg-gray-800 overflow-hidden">
+    <section id="about" ref={containerRef} className="py-20 bg-white dark:bg-gray-800 overflow-hidden transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={titleRef} className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Sobre Mí</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">{t.title}</h2>
           <div className="w-20 h-1 bg-blue-500 mx-auto rounded-full"></div>
         </div>
 
@@ -54,15 +60,15 @@ export default function About() {
             />
           </div>
 
-          <div ref={textRef} className="md:w-1/2 text-gray-300 space-y-6">
+          <div ref={textRef} className="md:w-1/2 text-gray-600 dark:text-gray-300 space-y-6">
             <p className="text-lg">
-              Siempre me ha atraído la informática, pero no fue hasta que profundicé más en la programación que me di cuenta de que este era realmente mi lugar. Las primeras etapas de la universidad no fueron fáciles, pero aprendí a pensar como un ingeniero.
+              {t.p1}
             </p>
             <p className="text-lg">
-              Soy apasionado por aprender nuevos lenguajes de programación y enfrentar desafíos. Tengo la capacidad de adaptarme rápidamente y absorber conocimiento como una esponja. En mi tiempo libre, disfruto de los videojuegos, el baloncesto y el cine.
+              {t.p2}
             </p>
-            <blockquote className="border-l-4 border-blue-500 pl-4 italic text-gray-400 my-4">
-              "El éxito no es la ausencia de fracaso, sino la respuesta a él."
+            <blockquote className="border-l-4 border-blue-500 pl-4 italic text-gray-500 dark:text-gray-400 my-4">
+              {t.quote}
             </blockquote>
           </div>
         </div>

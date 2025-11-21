@@ -2,8 +2,14 @@ import React, { useRef } from 'react';
 import { ArrowRight, Download } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { translations } from '../../i18n/translations';
 
-export default function Hero() {
+interface HeroProps {
+  lang?: 'es' | 'en';
+}
+
+export default function Hero({ lang = 'es' }: HeroProps) {
+  const t = translations[lang].hero;
   const containerRef = useRef(null);
   const textRef = useRef<HTMLDivElement>(null);
   const imageWrapperRef = useRef<HTMLDivElement>(null);
@@ -64,32 +70,32 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" ref={containerRef} className="min-h-screen flex items-center justify-center py-20 bg-gradient-to-b from-gray-900 to-gray-800 overflow-hidden">
+    <section id="home" ref={containerRef} className="min-h-screen flex items-center justify-center py-20 bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 overflow-hidden transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
         <div ref={textRef} className="md:w-1/2 text-center md:text-left z-10">
-          <h2 className="text-blue-500 font-bold text-xl md:text-2xl mb-4 tracking-wide">Hola, soy</h2>
-          <h1 className="text-5xl md:text-7xl font-extrabold text-white mb-6 leading-tight">
-            Alberto <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-emerald-400">Fernández</span>
+          <h2 className="text-blue-500 font-bold text-xl md:text-2xl mb-4 tracking-wide">{t.greeting}</h2>
+          <h1 className="text-5xl md:text-7xl font-extrabold text-gray-900 dark:text-white mb-6 leading-tight">
+            Alberto <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-500 dark:from-blue-400 dark:to-emerald-400">Fernández</span>
           </h1>
-          <h3 className="text-2xl md:text-4xl text-gray-300 mb-8 font-light">
-            Ingeniero de Software & Investigador IA
+          <h3 className="text-2xl md:text-4xl text-gray-600 dark:text-gray-300 mb-8 font-light">
+            {t.role}
           </h3>
-          <p className="text-gray-400 text-xl mb-10 max-w-lg mx-auto md:mx-0 leading-relaxed">
-            Soy un apasionado de la informática, me defino como una persona con ganas de aprender y abierta a conocer más gente del sector con la que poder colaborar.
+          <p className="text-gray-500 dark:text-gray-400 text-xl mb-10 max-w-lg mx-auto md:mx-0 leading-relaxed">
+            {t.description}
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center md:justify-start">
             <a 
               href="#projects" 
               className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-blue-500/30 flex items-center justify-center gap-2 transform hover:-translate-y-1"
             >
-              Ver Proyectos <ArrowRight size={24} />
+              {t.viewProjects} <ArrowRight size={24} />
             </a>
             <a 
               href="/assets/cv.pdf" 
               target="_blank"
-              className="px-8 py-4 border-2 border-gray-600 hover:border-blue-400 text-gray-300 hover:text-white rounded-full font-bold text-lg transition-all flex items-center justify-center gap-2 hover:bg-gray-800"
+              className="px-8 py-4 border-2 border-gray-300 dark:border-gray-600 hover:border-blue-500 dark:hover:border-blue-400 text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-white rounded-full font-bold text-lg transition-all flex items-center justify-center gap-2 hover:bg-gray-100 dark:hover:bg-gray-800"
             >
-              Descargar CV <Download size={24} />
+              {t.downloadCV} <Download size={24} />
             </a>
           </div>
         </div>

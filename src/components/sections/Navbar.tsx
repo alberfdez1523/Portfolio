@@ -2,18 +2,25 @@ import React, { useRef } from 'react';
 import { Home, User, Code, Briefcase, GraduationCap, FolderGit2, Mail } from 'lucide-react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { translations } from '../../i18n/translations';
 
-const navItems = [
-  { name: 'Inicio', href: '#home', icon: Home },
-  { name: 'Acerca de', href: '#about', icon: User },
-  { name: 'Habilidades', href: '#skills', icon: Code },
-  { name: 'Experiencia', href: '#experience', icon: Briefcase },
-  { name: 'Educación', href: '#education', icon: GraduationCap },
-  { name: 'Proyectos', href: '#projects', icon: FolderGit2 },
-  { name: 'Contacto', href: '#contact', icon: Mail },
-];
+interface NavbarProps {
+  lang?: 'es' | 'en';
+}
 
-export default function Navbar() {
+export default function Navbar({ lang = 'es' }: NavbarProps) {
+  const t = translations[lang].nav;
+  
+  const navItems = [
+    { name: t.home, href: '#home', icon: Home },
+    { name: t.about, href: '#about', icon: User },
+    { name: t.skills, href: '#skills', icon: Code },
+    { name: t.experience, href: '#experience', icon: Briefcase },
+    { name: t.education, href: '#education', icon: GraduationCap },
+    { name: t.projects, href: '#projects', icon: FolderGit2 },
+    { name: t.contact, href: '#contact', icon: Mail },
+  ];
+
   const dockRef = useRef<HTMLDivElement>(null);
   const itemsRef = useRef<(HTMLAnchorElement | null)[]>([]);
 
@@ -88,7 +95,7 @@ export default function Navbar() {
     <div className="fixed bottom-6 left-0 right-0 z-50 flex justify-center pointer-events-none px-4">
       <nav 
         ref={dockRef}
-        className="flex items-end gap-3 sm:gap-6 px-3 py-3 bg-gray-900/40 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl pointer-events-auto max-w-full overflow-x-auto sm:overflow-visible no-scrollbar"
+        className="flex items-end gap-3 sm:gap-6 px-3 py-3 bg-white/40 dark:bg-gray-900/40 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 rounded-2xl shadow-2xl pointer-events-auto max-w-full overflow-x-auto sm:overflow-visible no-scrollbar transition-colors duration-300"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {navItems.map((item) => (
@@ -96,16 +103,16 @@ export default function Navbar() {
             key={item.name}
             href={item.href}
             ref={addToItemsRef}
-            className="relative group p-2 sm:p-3 rounded-xl bg-gray-800/50 hover:bg-gray-700/80 border border-white/5 transition-colors flex items-center justify-center flex-shrink-0"
+            className="relative group p-2 sm:p-3 rounded-xl bg-gray-100/50 dark:bg-gray-800/50 hover:bg-gray-200/80 dark:hover:bg-gray-700/80 border border-gray-200/50 dark:border-white/5 transition-colors flex items-center justify-center flex-shrink-0"
             aria-label={item.name}
           >
-            <item.icon className="w-5 h-5 sm:w-6 sm:h-6 text-gray-300 group-hover:text-blue-400 transition-colors" />
+            <item.icon className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
             
             {/* Tooltip */}
-            <span className="hidden sm:block absolute -top-14 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-gray-900/90 backdrop-blur-md text-white text-xs font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 whitespace-nowrap pointer-events-none border border-white/10 shadow-xl">
+            <span className="hidden sm:block absolute -top-14 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md text-gray-900 dark:text-white text-xs font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 whitespace-nowrap pointer-events-none border border-gray-200/50 dark:border-white/10 shadow-xl">
               {item.name}
               {/* Arrow */}
-              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-gray-900/90 border-r border-b border-white/10 transform rotate-45"></span>
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white/90 dark:bg-gray-900/90 border-r border-b border-gray-200/50 dark:border-white/10 transform rotate-45"></span>
             </span>
           </a>
         ))}

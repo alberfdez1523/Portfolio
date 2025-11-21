@@ -1,0 +1,26 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Navbar from '../../components/sections/Navbar';
+import Hero from '../../components/sections/Hero';
+import About from '../../components/sections/About';
+import Skills from '../../components/sections/Skills';
+import Experience from '../../components/sections/Experience';
+import Education from '../../components/sections/Education';
+import Projects from '../../components/sections/Projects';
+import Contact from '../../components/sections/Contact';
+import Footer from '../../components/sections/Footer';
+---
+
+<Layout title="Alberto Fernández | Portfolio">
+	<Navbar client:load lang="en" />
+	<main>
+		<Hero client:load lang="en" />
+		<About client:visible lang="en" />
+		<Skills client:visible lang="en" />
+		<Experience client:visible lang="en" />
+		<Education client:visible lang="en" />
+		<Projects client:visible lang="en" />
+		<Contact client:visible lang="en" />
+	</main>
+	<Footer lang="en" />
+</Layout>
