@@ -39,7 +39,7 @@ export default function Footer({ lang = 'es' }: FooterProps) {
           <p>&copy; {new Date().getFullYear()} Alberto Fernández.</p>
           <p className="mt-1">{t.madeWith} <span className="text-red-500">❤</span> {t.and} ☕ {t.using} </p>
           <p className="mt-1">React y TailwindCSS</p>
-          <a href="http://www.onlinewebfonts.com">Web Fonts</a>
+          <a href="https://www.onlinewebfonts.com">Web Fonts</a>
         </div>
       </div>
     </footer>
