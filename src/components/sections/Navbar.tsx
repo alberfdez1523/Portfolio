@@ -95,7 +95,7 @@ export default function Navbar({ lang = 'es' }: NavbarProps) {
     <div className="fixed bottom-6 left-0 right-0 z-50 flex justify-center pointer-events-none px-4">
       <nav 
         ref={dockRef}
-        className="flex items-end gap-3 sm:gap-6 px-3 py-3 bg-white/40 dark:bg-gray-900/40 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 rounded-2xl shadow-2xl pointer-events-auto max-w-full overflow-x-auto sm:overflow-visible no-scrollbar transition-colors duration-300"
+        className="flex items-end gap-3 sm:gap-6 px-3 py-3 bg-light/40 dark:bg-dark/40 backdrop-blur-xl border border-secondary/10 dark:border-light/10 rounded-2xl shadow-2xl pointer-events-auto max-w-full overflow-x-auto sm:overflow-visible no-scrollbar transition-colors duration-300"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {navItems.map((item) => (
@@ -103,16 +103,16 @@ export default function Navbar({ lang = 'es' }: NavbarProps) {
             key={item.name}
             href={item.href}
             ref={addToItemsRef}
-            className="relative group p-2 sm:p-3 rounded-xl bg-gray-100/50 dark:bg-gray-800/50 hover:bg-gray-200/80 dark:hover:bg-gray-700/80 border border-gray-200/50 dark:border-white/5 transition-colors flex items-center justify-center flex-shrink-0"
+            className="relative group p-2 sm:p-3 rounded-xl bg-white/50 dark:bg-secondary/50 hover:bg-white/80 dark:hover:bg-secondary/80 border border-secondary/10 dark:border-light/5 transition-colors flex items-center justify-center flex-shrink-0"
             aria-label={item.name}
           >
-            <item.icon className="w-5 h-5 sm:w-6 sm:h-6 text-gray-600 dark:text-gray-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors" />
+            <item.icon className="w-5 h-5 sm:w-6 sm:h-6 text-secondary dark:text-light group-hover:text-primary dark:group-hover:text-primary transition-colors" />
             
             {/* Tooltip */}
-            <span className="hidden sm:block absolute -top-14 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md text-gray-900 dark:text-white text-xs font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 whitespace-nowrap pointer-events-none border border-gray-200/50 dark:border-white/10 shadow-xl">
+            <span className="hidden sm:block absolute -top-14 left-1/2 -translate-x-1/2 px-3 py-1.5 bg-light/90 dark:bg-dark/90 backdrop-blur-md text-secondary dark:text-light text-xs font-medium rounded-lg opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-y-2 group-hover:translate-y-0 whitespace-nowrap pointer-events-none border border-secondary/10 dark:border-light/10 shadow-xl">
               {item.name}
               {/* Arrow */}
-              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-white/90 dark:bg-gray-900/90 border-r border-b border-gray-200/50 dark:border-white/10 transform rotate-45"></span>
+              <span className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 bg-light/90 dark:bg-dark/90 border-r border-b border-secondary/10 dark:border-light/10 transform rotate-45"></span>
             </span>
           </a>
         ))}

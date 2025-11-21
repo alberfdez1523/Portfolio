@@ -64,11 +64,11 @@ export default function Projects({ lang = 'es' }: ProjectsProps) {
   };
 
   return (
-    <section id="projects" ref={containerRef} className="py-20 bg-white dark:bg-gray-900 transition-colors duration-300">
+    <section id="projects" ref={containerRef} className="py-20 bg-transparent transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={titleRef} className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">{t.title}</h2>
-          <div className="w-20 h-1 bg-blue-500 mx-auto rounded-full"></div>
+          <h2 className="text-3xl md:text-4xl font-bold text-secondary dark:text-light mb-4">{t.title}</h2>
+          <div className="w-20 h-1 bg-primary mx-auto rounded-full"></div>
         </div>
 
         <div className="flex flex-wrap justify-center gap-8">
@@ -76,7 +76,7 @@ export default function Projects({ lang = 'es' }: ProjectsProps) {
             <div
               key={index}
               ref={addToProjectsRef}
-              className="bg-gray-50 dark:bg-gray-800 rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-blue-500/10 transition-all duration-300 border border-gray-200 dark:border-gray-700 group w-full max-w-md flex flex-col"
+              className="bg-white/50 dark:bg-secondary/50 backdrop-blur-sm rounded-xl overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-primary/10 transition-all duration-300 border border-secondary/10 dark:border-light/10 group w-full max-w-md flex flex-col"
             >
               <div className="relative overflow-hidden h-48">
                 <img 
@@ -89,7 +89,7 @@ export default function Projects({ lang = 'es' }: ProjectsProps) {
                     href={project.github} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="p-2 bg-white dark:bg-gray-900 rounded-full text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors hover:scale-110 transform duration-200"
+                    className="p-2 bg-light dark:bg-dark rounded-full text-secondary dark:text-light hover:text-primary dark:hover:text-primary transition-colors hover:scale-110 transform duration-200"
                   >
                     <Github size={24} />
                   </a>
@@ -97,11 +97,11 @@ export default function Projects({ lang = 'es' }: ProjectsProps) {
               </div>
               
               <div className="p-6 flex-grow flex flex-col">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{project.title}</h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-3 flex-grow">{project.description}</p>
+                <h3 className="text-xl font-bold text-secondary dark:text-light mb-2 group-hover:text-primary dark:group-hover:text-primary transition-colors">{project.title}</h3>
+                <p className="text-secondary/80 dark:text-light/80 mb-4 line-clamp-3 flex-grow">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mt-auto">
                   {project.tags.map((tag) => (
-                    <span key={tag} className="px-3 py-1 text-xs font-medium bg-gray-200 dark:bg-gray-700 text-blue-700 dark:text-blue-300 rounded-full">
+                    <span key={tag} className="px-3 py-1 text-xs font-medium bg-secondary/10 dark:bg-light/10 text-primary rounded-full">
                       {tag}
                     </span>
                   ))}

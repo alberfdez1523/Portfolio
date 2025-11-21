@@ -12,17 +12,17 @@
 }
 
 @theme {
-  --color-primary: #3b82f6;
-  --color-secondary: #10b981;
-  --color-dark: #0f172a;
-  --color-light: #f8fafc;
+  --color-primary: #00ADB5;
+  --color-secondary: #393E46;
+  --color-dark: #222831;
+  --color-light: #EEEEEE;
   
   --font-sans: 'Satoshi', sans-serif;
   --font-display: 'Lena', sans-serif;
 }
 
 body {
-  @apply bg-white text-gray-900 dark:bg-gray-900 dark:text-white font-sans transition-colors duration-300;
+  @apply bg-light text-secondary dark:bg-dark dark:text-light font-sans transition-colors duration-300;
 }
 
 h1, h2, h3, h4, h5, h6 {

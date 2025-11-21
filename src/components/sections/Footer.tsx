@@ -30,12 +30,12 @@ export default function Footer({ lang = 'es' }: FooterProps) {
   }, { scope: footerRef });
 
   return (
-    <footer ref={footerRef} className="bg-gray-100 dark:bg-gray-900 border-t border-gray-200 dark:border-gray-800 py-8 transition-colors duration-300">
+    <footer ref={footerRef} className="bg-transparent border-t border-secondary/10 dark:border-light/10 py-8 transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-1 flex flex-col md:flex-row justify-between items-center">
         <div className="mb-4 md:mb-0">
-          <span className="text-2xl font-bold text-blue-600 dark:text-blue-500">Alberto Fernández</span>
+          <span className="text-2xl font-bold text-primary">Alberto Fernández</span>
         </div>
-        <div className="text-gray-500 dark:text-gray-400 text-center md:text-left">
+        <div className="text-secondary/60 dark:text-light/60 text-center md:text-left">
           <p>&copy; {new Date().getFullYear()} Alberto Fernández.</p>
           <p className="mt-1">{t.madeWith} <span className="text-red-500">❤</span> {t.and} ☕ {t.using} </p>
           <p className="mt-1">React y TailwindCSS</p>

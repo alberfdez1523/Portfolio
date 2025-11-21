@@ -44,11 +44,11 @@ export default function About({ lang = 'es' }: AboutProps) {
   }, { scope: containerRef });
 
   return (
-    <section id="about" ref={containerRef} className="py-20 bg-white dark:bg-gray-800 overflow-hidden transition-colors duration-300">
+    <section id="about" ref={containerRef} className="py-20 bg-white/30 dark:bg-secondary/30 backdrop-blur-sm overflow-hidden transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={titleRef} className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">{t.title}</h2>
-          <div className="w-20 h-1 bg-blue-500 mx-auto rounded-full"></div>
+          <h2 className="text-3xl md:text-4xl font-bold text-secondary dark:text-light mb-4">{t.title}</h2>
+          <div className="w-20 h-1 bg-primary mx-auto rounded-full"></div>
         </div>
 
         <div className="flex flex-col md:flex-row items-center gap-12">
@@ -60,14 +60,14 @@ export default function About({ lang = 'es' }: AboutProps) {
             />
           </div>
 
-          <div ref={textRef} className="md:w-1/2 text-gray-600 dark:text-gray-300 space-y-6">
+          <div ref={textRef} className="md:w-1/2 text-secondary/80 dark:text-light/80 space-y-6">
             <p className="text-lg">
               {t.p1}
             </p>
             <p className="text-lg">
               {t.p2}
             </p>
-            <blockquote className="border-l-4 border-blue-500 pl-4 italic text-gray-500 dark:text-gray-400 my-4">
+            <blockquote className="border-l-4 border-primary pl-4 italic text-secondary/70 dark:text-light/70 my-4">
               {t.quote}
             </blockquote>
           </div>

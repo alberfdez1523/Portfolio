@@ -74,11 +74,11 @@ export default function Skills({ lang = 'es' }: SkillsProps) {
   };
 
   return (
-    <section id="skills" ref={containerRef} className="py-20 bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <section id="skills" ref={containerRef} className="py-20 bg-transparent transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div ref={titleRef} className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">{t.title}</h2>
-          <div className="w-20 h-1 bg-blue-500 mx-auto rounded-full"></div>
+          <h2 className="text-3xl md:text-4xl font-bold text-secondary dark:text-light mb-4">{t.title}</h2>
+          <div className="w-20 h-1 bg-primary mx-auto rounded-full"></div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-center">
@@ -86,14 +86,14 @@ export default function Skills({ lang = 'es' }: SkillsProps) {
             <div
               key={skill.name}
               ref={addToSkillsRef}
-              className="bg-white dark:bg-gray-800 p-6 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors border border-gray-200 dark:border-gray-700 hover:border-blue-500/50 group shadow-sm dark:shadow-none"
+              className="bg-white/50 dark:bg-secondary/50 backdrop-blur-sm p-6 rounded-xl hover:bg-white/80 dark:hover:bg-secondary/80 transition-colors border border-secondary/10 dark:border-light/10 hover:border-primary/50 group shadow-sm dark:shadow-none"
             >
               <div className="flex justify-between items-end mb-2">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">{skill.name}</h3>
-                <span className="text-sm text-gray-500 dark:text-gray-400">{skill.category}</span>
+                <h3 className="text-xl font-semibold text-secondary dark:text-light group-hover:text-primary dark:group-hover:text-primary transition-colors">{skill.name}</h3>
+                <span className="text-sm text-secondary/60 dark:text-light/60">{skill.category}</span>
               </div>
-              <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5 overflow-hidden">
-                <div className="progress-bar bg-blue-600 h-2.5 rounded-full w-0"></div>
+              <div className="w-full bg-secondary/10 dark:bg-light/10 rounded-full h-2.5 overflow-hidden">
+                <div className="progress-bar bg-primary h-2.5 rounded-full w-0"></div>
               </div>
             </div>
           ))}
