@@ -47,7 +47,7 @@ export const translations = {
       items: [
         {
           degree: 'Máster en Inteligencia Artificial',
-          school: 'Universidad Alfonso X el Sabio (UAX)',
+          school: 'Universidad Alfonso X el Sabio - (UAX)',
           period: '2025 - Presente',
           description: 'Master oficial basado en la especialización en técnicas avanzadas de IA, Machine Learning y Deep Learning.',
         },
