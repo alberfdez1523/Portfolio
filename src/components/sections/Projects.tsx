@@ -17,14 +17,14 @@ export default function Projects({ lang = 'es' }: ProjectsProps) {
       title: t.items[0].title,
       description: t.items[0].description,
       tags: ['Python', 'Qiskit', 'Pennylane', 'Machine Learning'],
-      image: '/assets/codigo.png',
+      image: '/assets/tfg.png',
       github: 'https://github.com/alberfdez1523/QMLvsML',
     },
     {
       title: t.items[1].title,
       description: t.items[1].description,
       tags: ['HTML', 'CSS', 'JavaScript', 'GSAP'],
-      image: '/assets/codigo.png',
+      image: '/assets/Portfolio.png',
       github: 'https://github.com/alberfdez1523/Portfolio',
     },
   ];
