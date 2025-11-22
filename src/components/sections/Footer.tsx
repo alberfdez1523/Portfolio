@@ -38,8 +38,7 @@ export default function Footer({ lang = 'es' }: FooterProps) {
         <div className="text-secondary/60 dark:text-light/60 text-center md:text-left">
           <p>&copy; {new Date().getFullYear()} Alberto Fernández.</p>
           <p className="mt-1">{t.madeWith} <span className="text-red-500">❤</span> {t.and} ☕ {t.using} </p>
-          <p className="mt-1">React y TailwindCSS</p>
-          <a href="https://www.onlinewebfonts.com">Web Fonts</a>
+          <p className="mt-1">React y TailwindCSS.</p>
         </div>
       </div>
     </footer>
