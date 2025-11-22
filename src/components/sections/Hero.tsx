@@ -73,14 +73,14 @@ export default function Hero({ lang = 'es' }: HeroProps) {
     <section id="home" ref={containerRef} className="min-h-screen flex items-center justify-center py-20 bg-transparent overflow-hidden transition-colors duration-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
         <div ref={textRef} className="md:w-1/2 text-center md:text-left z-10">
-          <h2 className="text-primary font-bold text-xl md:text-2xl mb-4 tracking-wide">{t.greeting}</h2>
+          <h2 className="text-primary font-bold text-2xl md:text-3xl mb-4 tracking-wide">{t.greeting}</h2>
           <h1 className="text-5xl md:text-7xl font-extrabold text-secondary dark:text-light mb-6 leading-tight">
             Alberto <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/60 dark:from-primary dark:to-primary/60">Fernández</span>
           </h1>
           <h3 className="text-2xl md:text-4xl text-secondary/80 dark:text-light/80 mb-8 font-light">
             {t.role}
           </h3>
-          <p className="text-secondary/70 dark:text-light/70 text-xl mb-10 max-w-lg mx-auto md:mx-0 leading-relaxed">
+          <p className="text-secondary/70 dark:text-light/70 text-l mb-10 max-w-lg mx-auto md:mx-0 leading-relaxed">
             {t.description}
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center md:justify-start">

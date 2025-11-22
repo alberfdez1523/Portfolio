@@ -1,12 +1,12 @@
-@import url('https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @variant dark (&:where(.dark, .dark *));
 
 @font-face {
-  font-family: 'Lena';
-  src: url('/fonts/Lena.woff') format('woff');
-  font-weight: normal;
+  font-family: 'Zodiak';
+  src: url('/fonts/Zodiak-Variable.ttf') format('truetype');
+  font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
@@ -17,8 +17,8 @@
   --color-dark: #222831;
   --color-light: #EEEEEE;
   
-  --font-sans: 'Satoshi', sans-serif;
-  --font-display: 'Lena', sans-serif;
+  --font-sans: 'Fira Code', monospace;
+  --font-display: 'Zodiak', bold;
 }
 
 body {
