@@ -23,7 +23,7 @@ export default function Projects({ lang = 'es' }: ProjectsProps) {
     {
       title: t.items[1].title,
       description: t.items[1].description,
-      tags: ['HTML', 'CSS', 'JavaScript', 'GSAP'],
+      tags: ['Astro', 'TailwindCSS', 'React', 'TypeScript'],
       image: '/assets/Portfolio.png',
       github: 'https://github.com/alberfdez1523/Portfolio',
     },

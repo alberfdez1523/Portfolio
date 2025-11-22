@@ -3,14 +3,17 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { translations } from '../../i18n/translations';
+import { Type } from 'lucide-react';
 
 const skills = [
   { name: 'Python', level: 90, category: 'Programming' },
   { name: 'R', level: 80, category: 'Programming' },
   { name: 'Java', level: 50, category: 'Programming' },
   { name: 'C++', level: 50, category: 'Programming' },
+  { name: 'Astro', level: 70, category: 'Frontend' },
+  { name: 'TypeScript', level: 60, category: 'Frontend' },
   { name: 'React', level: 75, category: 'Frontend' },
-  { name: 'HTML/CSS', level: 90, category: 'Frontend' },
+  { name: 'Tailwind CSS', level: 70, category: 'Frontend' },
   { name: 'SQL', level: 90, category: 'Database' },
   { name: 'PennyLane', level: 75, category: 'Quantum' },
   { name: 'Qiskit', level: 65, category: 'Quantum' },
