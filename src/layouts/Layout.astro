@@ -1,184 +1,498 @@
 ---
-import '../styles/global.css';
-import Analytics from '@vercel/analytics/astro'
-import Background from '../components/Background.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
 
 interface Props {
-	title: string;
-    description?: string;
+  title: string;
 }
 
-const { title, description = "Portfolio de Alberto Fernández - Desarrollador Web Full Stack" } = Astro.props;
+const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es" class="scroll-smooth">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content={description} />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/png" href="/favicon.png" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-		<script is:inline>
-			// Script de bloqueo para evitar FOUC (Flash of Unstyled Content)
-			// Se ejecuta inmediatamente antes de que el navegador renderice el body
-			const savedTheme = localStorage.getItem('theme');
-			// Por defecto dark si no hay preferencia guardada
-			const initialIsDark = savedTheme === 'dark' || (!savedTheme && true); 
-			
-			if (initialIsDark) {
-				document.documentElement.classList.add('dark');
-			} else {
-				document.documentElement.classList.remove('dark');
-			}
-		</script>
-	</head>
-	<body class="bg-light text-secondary dark:bg-dark dark:text-light antialiased transition-colors duration-300">
-		<Background />
-		<slot />
+<html lang="es" class="scroll-smooth" data-theme="dark" data-lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Alberto Fernández - Ingeniero de Software & IA" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
+    <title>{title}</title>
 
-		<!-- Contenedor de Botones Flotantes -->
-		<div class="fixed top-6 right-6 z-50 flex items-center gap-4">
-			<!-- Botón de Tema (Dark/Light) -->
-			<button
-				id="theme-toggle"
-				class="flex h-12 w-12 items-center justify-center rounded-full shadow-lg ring-1 transition-all hover:scale-110 bg-light text-secondary ring-gray-200 hover:bg-white dark:bg-secondary dark:text-light dark:ring-white/10 dark:hover:bg-dark"
-				aria-label="Cambiar tema"
-			>
-				<!-- Icono Sol (Light Mode) -->
-				<svg id="icon-sun" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-				</svg>
-				<!-- Icono Luna (Dark Mode) -->
-				<svg id="icon-moon" xmlns="http://www.w3.org/2000/svg" class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-				</svg>
-			</button>
+    <!-- Prevent FOUC: apply saved theme/lang before render -->
+    <script is:inline>
+      (function(){
+        var t = localStorage.getItem('theme') || 'dark';
+        var l = localStorage.getItem('lang') || 'es';
+        document.documentElement.setAttribute('data-theme', t);
+        document.documentElement.setAttribute('data-lang', l);
+        document.documentElement.lang = l;
+      })();
+    </script>
+  </head>
+  <body class="antialiased font-['Inter'] overflow-x-hidden transition-colors duration-500 bg-body text-body">
+    <!-- Grain overlay (static – no animation, GPU-composited) -->
+    <div class="grain-overlay" aria-hidden="true"></div>
 
-			<!-- Botón Flotante de Idioma -->
-			<button 
-				id="lang-toggle" 
-				class="group relative flex h-12 w-28 items-center rounded-full bg-secondary p-1 shadow-[0_0_15px_rgba(0,0,0,0.3)] ring-1 ring-white/10 transition-all hover:scale-105 hover:ring-primary/50 dark:bg-secondary bg-light ring-black/5"
-				aria-label="Cambiar idioma"
-			>
-				<!-- Fondo deslizante -->
-				<div 
-					id="toggle-bg" 
-					class="absolute left-1 h-10 w-[50px] rounded-full bg-gradient-to-r from-primary to-primary/80 shadow-sm transition-transform duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)]"
-				></div>
+    <!-- Gradient orbs (GPU-composited, reduced blur) -->
+    <div class="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
+      <div class="orb-accent absolute -top-40 -right-40 w-[600px] h-[600px] rounded-full blur-[80px] animate-float"></div>
+      <div class="orb-accent2 absolute top-1/2 -left-40 w-[500px] h-[500px] rounded-full blur-[80px] animate-float" style="animation-delay:-3s;"></div>
+      <div class="orb-accent3 absolute bottom-0 right-1/3 w-[400px] h-[400px] rounded-full blur-[60px] animate-float" style="animation-delay:-5s;"></div>
+    </div>
 
-				<!-- Bandera ES -->
-				<span 
-					id="flag-es" 
-					class="relative z-10 w-1/2 flex justify-center transition-all duration-300"
-				>
-					<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 rounded-full shadow-sm object-cover" viewBox="0 0 640 480">
-						<path fill="#aa151b" d="M0 0h640v480H0z"/>
-						<path fill="#f1bf00" d="M0 120h640v240H0z"/>
-					</svg>
-				</span>
+    <Navbar />
 
-				<!-- Bandera EN -->
-				<span 
-					id="flag-en" 
-					class="relative z-10 w-1/2 flex justify-center transition-all duration-300"
-				>
-					<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 rounded-full shadow-sm object-cover" viewBox="0 0 640 480">
-						<path fill="#012169" d="M0 0h640v480H0z"/>
-						<path fill="#FFF" d="M75 0l244 181L562 0h78v62L400 241l240 178v61h-80L320 301 81 480H0v-60l239-178L0 64V0h75z"/>
-						<path fill="#C8102E" d="M424 281l216 159v40L369 281h55zm-184 20l6 35L54 480H0l240-179zM640 0v3L391 191l2-44L590 0h50zM0 0l239 176h-60L0 42V0z"/>
-						<path fill="#FFF" d="M241 0v480h160V0H241zM0 160v160h640V160H0z"/>
-						<path fill="#C8102E" d="M0 193v96h640v-96H0zM273 0v480h96V0h-96z"/>
-					</svg>
-				</span>
-			</button>
-		</div>
+    <main class="relative z-10">
+      <slot />
+    </main>
 
-		<script>
-			// --- Lógica de Idioma ---
-			const toggleBtn = document.getElementById('lang-toggle');
-			const toggleBg = document.getElementById('toggle-bg');
-			const flagEs = document.getElementById('flag-es');
-			const flagEn = document.getElementById('flag-en');
-			
-			const currentPath = window.location.pathname;
-			let isEnglish = currentPath.startsWith('/en');
+    <Footer />
 
-			const updateLangUI = (english: boolean) => {
-				if (english) {
-					toggleBg!.style.transform = 'translateX(100%)';
-					
-					// ES inactivo
-					flagEs!.classList.add('opacity-50', 'grayscale');
-					flagEs!.classList.remove('opacity-100', 'grayscale-0');
-					
-					// EN activo
-					flagEn!.classList.add('opacity-100', 'grayscale-0');
-					flagEn!.classList.remove('opacity-50', 'grayscale');
-				} else {
-					toggleBg!.style.transform = 'translateX(0)';
-					
-					// ES activo
-					flagEs!.classList.add('opacity-100', 'grayscale-0');
-					flagEs!.classList.remove('opacity-50', 'grayscale');
-					
-					// EN inactivo
-					flagEn!.classList.add('opacity-50', 'grayscale');
-					flagEn!.classList.remove('opacity-100', 'grayscale-0');
-				}
-			};
+    <style is:global>
+      @tailwind base;
+      @tailwind components;
+      @tailwind utilities;
 
-			updateLangUI(isEnglish);
+      /* ========= THEME VARIABLES ========= */
+      :root,
+      [data-theme="dark"] {
+        --c-bg:        #050506;
+        --c-bg2:       #09090b;
+        --c-text:      #ffffff;
+        --c-text-70:   rgba(255,255,255,0.7);
+        --c-text-50:   rgba(255,255,255,0.5);
+        --c-text-40:   rgba(255,255,255,0.4);
+        --c-text-30:   rgba(255,255,255,0.3);
+        --c-text-20:   rgba(255,255,255,0.2);
+        --c-text-10:   rgba(255,255,255,0.1);
+        --c-text-05:   rgba(255,255,255,0.05);
+        --c-glass:     rgba(255,255,255,0.03);
+        --c-glass-h:   rgba(255,255,255,0.06);
+        --c-glass-b:   rgba(255,255,255,0.06);
+        --c-accent:    #c8ff00;
+        --c-accent2:   #7B61FF;
+        --c-accent2-l: #9d85ff;
+        --c-img-opacity: 0.8;
+        --c-grain:     0.4;
+        --c-orb-a:     rgba(200,255,0,0.05);
+        --c-orb-b:     rgba(123,97,255,0.05);
+        --c-scroll-track:#09090b;
+        --c-scroll-thumb:#27272a;
+        --c-selection: rgba(200,255,0,0.3);
+        --c-surface-950: #050506;
+        --c-invert: 0;
+      }
 
-			toggleBtn?.addEventListener('click', () => {
-				const newLangIsEnglish = !isEnglish;
-				if (newLangIsEnglish) {
-					const newPath = '/en' + (currentPath === '/' ? '' : currentPath);
-					window.location.href = newPath;
-				} else {
-					const newPath = currentPath.replace(/^\/en/, '') || '/';
-					window.location.href = newPath;
-				}
-			});
+      [data-theme="light"] {
+        --c-bg:        #f5f2ed;
+        --c-bg2:       #faf8f4;
+        --c-text:      #18181b;
+        --c-text-70:   rgba(0,0,0,0.7);
+        --c-text-50:   rgba(0,0,0,0.55);
+        --c-text-40:   rgba(0,0,0,0.5);
+        --c-text-30:   rgba(0,0,0,0.35);
+        --c-text-20:   rgba(0,0,0,0.2);
+        --c-text-10:   rgba(0,0,0,0.1);
+        --c-text-05:   rgba(0,0,0,0.04);
+        --c-glass:     rgba(0,0,0,0.03);
+        --c-glass-h:   rgba(0,0,0,0.06);
+        --c-glass-b:   rgba(0,0,0,0.08);
+        --c-accent:    #6d9900;
+        --c-accent2:   #5a3fcc;
+        --c-accent2-l: #6b4de0;
+        --c-img-opacity: 1;
+        --c-grain:     0.12;
+        --c-orb-a:     rgba(200,255,0,0.08);
+        --c-orb-b:     rgba(123,97,255,0.06);
+        --c-scroll-track:#ece9e3;
+        --c-scroll-thumb:#d4d4d8;
+        --c-selection: rgba(109,153,0,0.25);
+        --c-surface-950: #f5f2ed;
+        --c-invert: 1;
+      }
 
-			// --- Lógica de Tema (Dark/Light) ---
-			const themeBtn = document.getElementById('theme-toggle');
-			const iconSun = document.getElementById('icon-sun');
-			const iconMoon = document.getElementById('icon-moon');
+      /* ========= BASE ========= */
+      .bg-body  { background-color: var(--c-bg); }
+      .text-body{ color: var(--c-text); }
 
-			// Función para establecer el tema (UI y LocalStorage)
-			const setTheme = (isDark: boolean) => {
-				if (isDark) {
-					document.documentElement.classList.add('dark');
-					localStorage.setItem('theme', 'dark');
-					iconMoon!.classList.remove('hidden');
-					iconSun!.classList.add('hidden');
-				} else {
-					document.documentElement.classList.remove('dark');
-					localStorage.setItem('theme', 'light');
-					iconSun!.classList.remove('hidden');
-					iconMoon!.classList.add('hidden');
-				}
-			};
+      ::selection {
+        background: var(--c-selection);
+        color: var(--c-text);
+      }
 
-			// Sincronizar UI con el estado actual (ya establecido en head)
-			const currentIsDark = document.documentElement.classList.contains('dark');
-			
-			// Solo actualizamos los iconos, no la clase del documento (ya está correcta)
-			if (currentIsDark) {
-				iconMoon!.classList.remove('hidden');
-				iconSun!.classList.add('hidden');
-			} else {
-				iconSun!.classList.remove('hidden');
-				iconMoon!.classList.add('hidden');
-			}
+      ::-webkit-scrollbar { width:6px; }
+      ::-webkit-scrollbar-track { background: var(--c-scroll-track); }
+      ::-webkit-scrollbar-thumb { background: var(--c-scroll-thumb); border-radius:3px; }
+      ::-webkit-scrollbar-thumb:hover { background: var(--c-accent); }
 
-			themeBtn?.addEventListener('click', () => {
-				const isDark = document.documentElement.classList.contains('dark');
-				setTheme(!isDark);
-			});
-		</script>
-		<Analytics />
-	</body>
+      /* Grain (static – no animation to avoid constant recomposite of 200% overlay) */
+      .grain-overlay {
+        position:fixed;inset:0;
+        width:100%;height:100%;
+        background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+        background-repeat:repeat;
+        pointer-events:none;z-index:9999;
+        opacity:var(--c-grain);
+        transform:translateZ(0);
+      }
+
+      /* Orbs */
+      .orb-accent  { background:var(--c-orb-a); }
+      .orb-accent2 { background:var(--c-orb-b); }
+      .orb-accent3 { background:var(--c-orb-a); }
+
+      /* Glass (lightweight – use backdrop-filter only on key elements via .glass-blur) */
+      .glass {
+        background: var(--c-glass);
+        border: 1px solid var(--c-glass-b);
+        transition: background 0.3s, border-color 0.3s;
+        transform: translateZ(0);
+      }
+      .glass-blur {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .glass-hover {
+        transition: transform 0.3s cubic-bezier(0.16,1,0.3,1),
+                    background 0.3s cubic-bezier(0.16,1,0.3,1),
+                    border-color 0.3s cubic-bezier(0.16,1,0.3,1),
+                    box-shadow 0.3s cubic-bezier(0.16,1,0.3,1);
+      }
+      .glass-hover:hover {
+        background: var(--c-glass-h);
+        border-color: color-mix(in srgb, var(--c-accent) 25%, transparent);
+        transform: translateY(-4px) translateZ(0);
+        box-shadow: 0 20px 40px -12px rgba(0,0,0,0.25);
+      }
+
+      /* Themed text utilities */
+      .t-text      { color: var(--c-text); }
+      .t-text-70   { color: var(--c-text-70); }
+      .t-text-50   { color: var(--c-text-50); }
+      .t-text-40   { color: var(--c-text-40); }
+      .t-text-30   { color: var(--c-text-30); }
+      .t-text-20   { color: var(--c-text-20); }
+      .t-text-10   { color: var(--c-text-10); }
+      .t-text-05   { color: var(--c-text-05); }
+      .t-accent    { color: var(--c-accent); }
+      .t-accent2   { color: var(--c-accent2-l); }
+      .t-bg        { background-color: var(--c-bg); }
+      .t-bg2       { background-color: var(--c-bg2); }
+      .t-surface   { background-color: var(--c-surface-950); }
+      .t-border    { border-color: var(--c-glass-b); }
+
+      .accent-bg   { background-color: var(--c-accent); }
+      .accent-border { border-color: color-mix(in srgb, var(--c-accent) 20%, transparent); }
+      .accent2-border{ border-color: color-mix(in srgb, var(--c-accent2) 20%, transparent); }
+      .accent-bg-10 { background: color-mix(in srgb, var(--c-accent) 10%, transparent); }
+      .accent2-bg-10{ background: color-mix(in srgb, var(--c-accent2) 10%, transparent); }
+      .accent-bg-5  { background: color-mix(in srgb, var(--c-accent) 5%, transparent); }
+      .accent2-bg-5 { background: color-mix(in srgb, var(--c-accent2) 5%, transparent); }
+
+      /* Section label */
+      .section-label {
+        font-family:'JetBrains Mono',monospace;
+        font-size:0.75rem;letter-spacing:0.2em;text-transform:uppercase;
+        color:var(--c-accent);display:flex;align-items:center;gap:0.75rem;
+      }
+      .section-label::before {
+        content:'';display:inline-block;width:2rem;height:1px;background:var(--c-accent);
+      }
+
+      /* Reveal animations */
+      .reveal {
+        opacity:0;transform:translateY(30px);
+        transition:all 0.8s cubic-bezier(0.16,1,0.3,1);
+      }
+      .reveal.visible { opacity:1;transform:translateY(0); }
+
+      .stagger-children > * {
+        opacity:0;transform:translateY(20px);
+        transition:all 0.6s cubic-bezier(0.16,1,0.3,1);
+      }
+      .stagger-children.visible > *:nth-child(1){transition-delay:.05s}
+      .stagger-children.visible > *:nth-child(2){transition-delay:.1s}
+      .stagger-children.visible > *:nth-child(3){transition-delay:.15s}
+      .stagger-children.visible > *:nth-child(4){transition-delay:.2s}
+      .stagger-children.visible > *:nth-child(5){transition-delay:.25s}
+      .stagger-children.visible > *:nth-child(6){transition-delay:.3s}
+      .stagger-children.visible > *:nth-child(7){transition-delay:.35s}
+      .stagger-children.visible > *:nth-child(8){transition-delay:.4s}
+      .stagger-children.visible > *:nth-child(9){transition-delay:.45s}
+      .stagger-children.visible > *:nth-child(10){transition-delay:.5s}
+      .stagger-children.visible > *:nth-child(11){transition-delay:.55s}
+      .stagger-children.visible > * { opacity:1;transform:translateY(0); }
+
+      /* Cursor (GPU-composited, use translate instead of left/top) */
+      .cursor-dot {
+        width:8px;height:8px;background:var(--c-accent);border-radius:50%;
+        position:fixed;top:0;left:0;pointer-events:none;z-index:99999;
+        mix-blend-mode:difference;
+        transition:transform .15s ease-out, opacity .15s ease-out;
+        will-change:transform;
+        contain:layout style;
+      }
+      @media (pointer:coarse) {
+        .cursor-dot { display:none !important; }
+      }
+
+      /* Animations */
+      @keyframes float {
+        0%,100%{transform:translateY(0)}50%{transform:translateY(-20px)}
+      }
+      /* grain animation removed — static grain is much cheaper */
+      @keyframes marquee {
+        0%{transform:translateX(0)}100%{transform:translateX(-50%)}
+      }
+      .animate-float { animation:float 6s ease-in-out infinite; contain:layout style; }
+      .animate-marquee{ animation:marquee 25s linear infinite; contain:layout style; }
+
+      /* Reduced motion – disable all expensive animations */
+      @media (prefers-reduced-motion: reduce) {
+        .grain-overlay { display:none; }
+        .animate-float { animation:none !important; }
+        .animate-marquee { animation:none !important; }
+        .reveal { opacity:1 !important; transform:none !important; transition:none !important; }
+        .stagger-children > * { opacity:1 !important; transform:none !important; transition:none !important; }
+        * { transition-duration:0.01ms !important; animation-duration:0.01ms !important; }
+      }
+
+      /* Gradient from surface */
+      .grad-from-surface { --tw-gradient-from: var(--c-surface-950); }
+
+      /* image themed opacity */
+      .t-img { opacity: var(--c-img-opacity); }
+
+      /* ========= PERFORMANCE ========= */
+      /* content-visibility: auto skips rendering for off-screen sections */
+      section {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 700px;
+      }
+      #home {
+        content-visibility: visible;
+        contain-intrinsic-size: auto 100vh;
+      }
+      /* GPU compositing for animated elements */
+      .orb-accent, .orb-accent2, .orb-accent3 {
+        will-change: transform;
+        contain: layout style;
+        transform: translateZ(0);
+      }
+    </style>
+
+    <script>
+      // ===========================
+      // TRANSLATIONS
+      // ===========================
+      const T: Record<string, Record<string, string>> = {
+        en: {
+          'nav.home':'Home','nav.about':'About','nav.skills':'Skills',
+          'nav.experience':'Experience','nav.projects':'Projects','nav.contact':'Contact',
+          'nav.cv':'Download CV',
+          'hero.label':'Portfolio 2026','hero.greeting':"Hello, I'm",
+          'hero.role1':'Software Engineer','hero.role2':'AI Engineer',
+          'hero.available':'Available',
+          'hero.desc':"I'm passionate about computer science. I define myself as a person eager to learn and open to meeting more people in the industry to collaborate with.",
+          'hero.cta1':'View Projects','hero.cta2':'Contact','hero.social':'Social',
+          'hero.years':'Years coding','hero.status':'// status','hero.master':"Master's in AI @ UAX",
+          'hero.scroll':'Scroll','hero.research':'Research',
+          'about.label':'About me',
+          'about.t1':'Transforming ideas into','about.t2':' code','about.t3':' with passion',
+          'about.p1':"I've always been attracted to computer science, but it wasn't until I delved deeper into programming that I realized this was really my place. The early stages of university weren't easy, but I learned to think like an engineer.",
+          'about.p2':"I'm passionate about learning new programming languages and facing challenges. I have the ability to adapt quickly and absorb knowledge like a sponge.",
+          'about.stat1':'Engineer','about.stat2':'Technologies','about.interests':'Interests:',
+          'about.quote':"Success is not the absence of failure, but the response to it.",
+          'skills.label':'Skills','skills.desc':'Tools and technologies I work with every day',
+          'skills.pydesc':'Main language for AI, Machine Learning and quantum algorithm development.',
+          'exp.label':'Experience','exp.t1':'Work','exp.t2':' Experience',
+          'exp.role1':'Researcher',
+          'exp.desc1':'Development of a comparative study between Quantum Machine Learning and Classical Machine Learning. Implementation of QML algorithms in Qiskit and Pennylane and comparison with classical algorithms.',
+          'exp.role2':'Database Operator',
+          'exp.desc2':'Assistance in resolving database-related issues and implementing solutions. Updating and modifying database records.',
+          'edu.label':'Education','edu.t1':'Academic','edu.t2':' Background',
+          'edu.role1':"Master's in Artificial Intelligence",
+          'edu.desc1':'Official master based on specialization in advanced AI, Machine Learning and Deep Learning techniques.',
+          'edu.role2':'Computer Engineering Degree — Software Eng.',
+          'edu.desc2':'Comprehensive training in software development, systems engineering and technology project management.',
+          'edu.current':'In progress','edu.learning':'Always learning',
+          'edu.learndesc':'Currently specializing in AI',
+          'proj.label':'Projects','proj.t1':'Featured','proj.t2':' Projects',
+          'proj.viewall':'View all on GitHub',
+          'proj.name1':'Quantum vs Classical Machine Learning',
+          'proj.desc1':'Research on Quantum Machine Learning and subsequent comparative analysis with Classical Machine Learning. A comprehensive study implementing QML algorithms in Qiskit and Pennylane.',
+          'proj.name2':'Web Development Portfolio',
+          'proj.desc2':'A modern and responsive portfolio website showcasing my skills and projects, built with HTML, CSS, JavaScript and GSAP animations.',
+          'proj.view':'View on GitHub',
+          'contact.label':'Contact','contact.t1':'Have a project','contact.t2':' in mind?',
+          'contact.desc':"I'm open to new opportunities. If you have any questions or proposals, don't hesitate to contact me.",
+          'contact.email':'Email','contact.location':'Location','contact.phone':'Phone',
+          'contact.cta':"Let's talk!",
+          'contact.ctadesc':"I'm always open to discussing new projects, creative ideas or opportunities.",
+          'contact.btn':'Send Email','contact.or':'or find me on',
+          'footer.back':'↑ Back to top','footer.made':'Made with','footer.using':'using Astro & TailwindCSS',
+        },
+        es: {
+          'nav.home':'Inicio','nav.about':'Sobre mí','nav.skills':'Skills',
+          'nav.experience':'Experiencia','nav.projects':'Proyectos','nav.contact':'Contacto',
+          'nav.cv':'Descargar CV',
+          'hero.label':'Portfolio 2026','hero.greeting':'Hola, soy',
+          'hero.role1':'Ingeniero de Software','hero.role2':'Ingeniero de IA',
+          'hero.available':'Disponible',
+          'hero.desc':'Soy un apasionado de la informática, me defino como una persona con ganas de aprender y abierta a conocer más gente del sector con la que poder colaborar.',
+          'hero.cta1':'Ver Proyectos','hero.cta2':'Contacto','hero.social':'Social',
+          'hero.years':'Años código','hero.status':'// status','hero.master':'Máster en IA @ UAX',
+          'hero.scroll':'Scroll','hero.research':'Research',
+          'about.label':'Sobre mí',
+          'about.t1':'Transformando ideas en','about.t2':' código','about.t3':' con pasión',
+          'about.p1':'Siempre me ha atraído la informática, pero no fue hasta que profundicé más en la programación que me di cuenta de que este era realmente mi lugar. Las primeras etapas de la universidad no fueron fáciles, pero aprendí a pensar como un ingeniero.',
+          'about.p2':'Soy apasionado por aprender nuevos lenguajes de programación y enfrentar desafíos. Tengo la capacidad de adaptarme rápidamente y absorber conocimiento como una esponja.',
+          'about.stat1':'Engineer','about.stat2':'Tecnologías','about.interests':'Intereses:',
+          'about.quote':'El éxito no es la ausencia de fracaso, sino la respuesta a él.',
+          'skills.label':'Habilidades','skills.desc':'Herramientas y tecnologías con las que trabajo día a día',
+          'skills.pydesc':'Lenguaje principal para IA, Machine Learning y desarrollo de algoritmos cuánticos.',
+          'exp.label':'Experiencia','exp.t1':'Experiencia','exp.t2':' Laboral',
+          'exp.role1':'Investigador',
+          'exp.desc1':'Desarrollo de trabajo comparativo entre Quantum Machine Learning y Classical Machine Learning. Implementación de algoritmos de Quantum Machine Learning en Qiskit y Pennylane y comparación con algoritmos clásicos.',
+          'exp.role2':'Operador de Base de Datos',
+          'exp.desc2':'Asistencia en la resolución de problemas relacionados con bases de datos e implementación de soluciones. Actualización y modificación de registros en la base de datos.',
+          'edu.label':'Educación','edu.t1':'Formación','edu.t2':' Académica',
+          'edu.role1':'Máster en Inteligencia Artificial',
+          'edu.desc1':'Master oficial basado en la especialización en técnicas avanzadas de IA, Machine Learning y Deep Learning.',
+          'edu.role2':'Grado en Ingeniería Informática — Ing. Software',
+          'edu.desc2':'Formación integral en desarrollo de software, ingeniería de sistemas y gestión de proyectos tecnológicos.',
+          'edu.current':'En curso','edu.learning':'Siempre aprendiendo',
+          'edu.learndesc':'Actualmente especializándome en IA',
+          'proj.label':'Proyectos','proj.t1':'Proyectos','proj.t2':' Destacados',
+          'proj.viewall':'Ver todos en GitHub',
+          'proj.name1':'Machine Learning Cuántico vs Clásico',
+          'proj.desc1':'Investigación sobre Machine Learning Cuántico y análisis comparativo posterior con Machine Learning Clásico. Un estudio integral que implementa algoritmos QML en Qiskit y Pennylane.',
+          'proj.name2':'Portafolio de Desarrollo Web',
+          'proj.desc2':'Un sitio web de portafolio moderno y responsivo que muestra mis habilidades y proyectos, construido con HTML, CSS, JavaScript y animaciones GSAP.',
+          'proj.view':'Ver en GitHub',
+          'contact.label':'Contacto','contact.t1':'¿Tienes un proyecto','contact.t2':' en mente?',
+          'contact.desc':'Estoy abierto a nuevas oportunidades. Si tienes alguna pregunta o propuesta, no dudes en contactarme.',
+          'contact.email':'Email','contact.location':'Ubicación','contact.phone':'Teléfono',
+          'contact.cta':'¡Hablemos!',
+          'contact.ctadesc':'Siempre estoy abierto a discutir nuevos proyectos, ideas creativas u oportunidades.',
+          'contact.btn':'Enviar Email','contact.or':'o encuéntrame en',
+          'footer.back':'↑ Volver arriba','footer.made':'Hecho con','footer.using':'usando Astro & TailwindCSS',
+        },
+      };
+
+      // ===========================
+      // THEME TOGGLE
+      // ===========================
+      function setTheme(theme: string) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        // Update icon visibility
+        document.getElementById('icon-sun')?.classList.toggle('hidden', theme === 'light');
+        document.getElementById('icon-moon')?.classList.toggle('hidden', theme === 'dark');
+      }
+
+      document.getElementById('btn-theme')?.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+        setTheme(current === 'dark' ? 'light' : 'dark');
+      });
+
+      // Init theme icons
+      const initTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      document.getElementById('icon-sun')?.classList.toggle('hidden', initTheme === 'light');
+      document.getElementById('icon-moon')?.classList.toggle('hidden', initTheme === 'dark');
+
+      // ===========================
+      // LANGUAGE TOGGLE
+      // ===========================
+      function setLang(lang: string) {
+        document.documentElement.setAttribute('data-lang', lang);
+        document.documentElement.lang = lang;
+        localStorage.setItem('lang', lang);
+        // Update button label
+        const btn = document.getElementById('btn-lang');
+        if (btn) btn.textContent = lang === 'es' ? 'EN' : 'ES';
+        // Swap all translatable text
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+          const key = el.getAttribute('data-i18n')!;
+          if (T[lang] && T[lang][key] !== undefined) {
+            el.textContent = T[lang][key];
+          }
+        });
+      }
+
+      document.getElementById('btn-lang')?.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-lang') || 'es';
+        setLang(current === 'es' ? 'en' : 'es');
+      });
+
+      // Init lang button label
+      const initLang = document.documentElement.getAttribute('data-lang') || 'es';
+      const btnL = document.getElementById('btn-lang');
+      if (btnL) btnL.textContent = initLang === 'es' ? 'EN' : 'ES';
+
+      // ===========================
+      // SCROLL REVEAL
+      // ===========================
+      const observer = new IntersectionObserver(
+        (entries) => entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } }),
+        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
+      );
+      document.querySelectorAll('.reveal, .stagger-children').forEach((el) => observer.observe(el));
+
+      // ===========================
+      // CUSTOM CURSOR
+      // ===========================
+      // Only create cursor on non-touch devices
+      const hasPointer = window.matchMedia('(pointer:fine)').matches;
+      if (hasPointer) {
+        const cursor = document.createElement('div');
+        cursor.classList.add('cursor-dot');
+        document.body.appendChild(cursor);
+        let mouseX = 0, mouseY = 0, cursorX = 0, cursorY = 0;
+        let cursorScale = 1, cursorOpacity = 1;
+        let rafId = 0;
+        let mouseMoving = false;
+
+        document.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX; mouseY = e.clientY;
+          if (!mouseMoving) { mouseMoving = true; rafId = requestAnimationFrame(animateCursor); }
+        }, { passive: true });
+
+        function animateCursor() {
+          const dx = mouseX - cursorX;
+          const dy = mouseY - cursorY;
+          cursorX += dx * 0.15;
+          cursorY += dy * 0.15;
+          cursor.style.transform = `translate3d(${cursorX - 4}px,${cursorY - 4}px,0) scale(${cursorScale})`;
+          cursor.style.opacity = String(cursorOpacity);
+          // Stop RAF when close enough to target
+          if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) {
+            rafId = requestAnimationFrame(animateCursor);
+          } else {
+            mouseMoving = false;
+          }
+        }
+
+        document.querySelectorAll('a, button, [data-cursor]').forEach((el) => {
+          el.addEventListener('mouseenter', () => { cursorScale = 4; cursorOpacity = 0.5; if (!mouseMoving) { mouseMoving = true; rafId = requestAnimationFrame(animateCursor); } }, { passive: true });
+          el.addEventListener('mouseleave', () => { cursorScale = 1; cursorOpacity = 1; if (!mouseMoving) { mouseMoving = true; rafId = requestAnimationFrame(animateCursor); } }, { passive: true });
+        });
+      }
+
+      // Smooth anchor scroll
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener('click', function (this: HTMLAnchorElement, e: Event) {
+          e.preventDefault();
+          const href = (this as HTMLAnchorElement).getAttribute('href');
+          const target = href ? document.querySelector(href) : null;
+          if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      });
+    </script>
+  </body>
 </html>
