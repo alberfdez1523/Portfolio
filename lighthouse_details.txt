@@ -1,0 +1,131 @@
+
+====== button-name (score: 0) ======
+Title: Buttons do not have an accessible name
+Desc: When a button doesn't have an accessible name, screen readers announce it as "button", making it unusable for users who rely on screen readers. [Learn how to make buttons more accessible](https://dequeuniversity.com/rules/axe/4.11/button-name).
+Items (1):
+  {"node":{"type":"node","lhId":"1-0-BUTTON","path":"1,HTML,1,BODY,4,NAV,0,DIV,5,DIV,7,BUTTON","selector":"nav#navbar > div.max-w-7xl > div.flex > button#mobile-toggle","boundingRect":{"top":16,"bottom":56,"left":348,"right":388,"width":40,"height":40},"snippet":"<button id=\"mobile-toggle\" class=\"md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 glas…\" data-cursor=\"\">","nodeLabel":"nav#navbar > div.max-w-7xl > div.flex > button#mobile-toggle","explanation":"Fix any of the
+Type: table
+
+====== color-contrast (score: 0) ======
+Title: Background and foreground colors do not have a sufficient contrast ratio.
+Desc: Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.11/color-contrast).
+Items (1):
+  {"node":{"type":"node","lhId":"1-1-SPAN","path":"1,HTML,1,BODY,6,MAIN,0,SECTION,2,DIV,0,SPAN","selector":"main.relative > section#home > div.absolute > span.font-['JetBrains_Mono']","boundingRect":{"top":1077,"bottom":1092,"left":206,"right":260,"width":54,"height":15},"snippet":"<span class=\"font-['JetBrains_Mono'] text-[10px] t-text-20 uppercase tracking-[0.3em]\" data-i18n=\"hero.scroll\">","nodeLabel":"SCROLL","explanation":"Fix any of the following:\n  Element has insufficient color contra
+Type: table
+
+====== label-content-name-mismatch (score: 0) ======
+Title: Elements with visible text labels do not have matching accessible names.
+Desc: Visible text labels that do not match the accessible name can result in a confusing experience for screen reader users. [Learn more about accessible names](https://dequeuniversity.com/rules/axe/4.11/label-content-name-mismatch).
+Items (1):
+  {"node":{"type":"node","lhId":"1-3-BUTTON","path":"1,HTML,1,BODY,4,NAV,0,DIV,5,DIV,1,BUTTON","selector":"nav#navbar > div.max-w-7xl > div.flex > button#btn-lang","boundingRect":{"top":16,"bottom":56,"left":252,"right":292,"width":40,"height":40},"snippet":"<button id=\"btn-lang\" class=\"w-10 h-10 glass rounded-lg flex items-center justify-center font-['JetBrai…\" data-cursor=\"\" aria-label=\"Toggle language\">","nodeLabel":"EN","explanation":"Fix any of the following:\n  Text inside the elemen
+Type: table
+
+====== link-name (score: 0) ======
+Title: Links do not have a discernible name
+Desc: Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users. [Learn how to make links accessible](https://dequeuniversity.com/rules/axe/4.11/link-name).
+Items (4):
+  {"node":{"type":"node","lhId":"1-4-A","path":"1,HTML,1,BODY,6,MAIN,0,SECTION,0,DIV,0,DIV,1,DIV,6,DIV,2,A","selector":"div.grid > div.space-y-8 > div.flex > a.w-10","boundingRect":{"top":641,"bottom":681,"left":138,"right":178,"width":40,"height":40},"snippet":"<a href=\"https://www.linkedin.com/in/alberto-fern%C3%A1ndez-palomo-38a583267/\" target=\"_blank\" class=\"w-10 h-10 glass rounded-lg flex items-center justify-center t-text-40 hove…\" data-cursor=\"\">","nodeLabel":"div.grid > div.space-y
+  {"node":{"type":"node","lhId":"1-5-A","path":"1,HTML,1,BODY,6,MAIN,0,SECTION,0,DIV,0,DIV,1,DIV,6,DIV,3,A","selector":"div.grid > div.space-y-8 > div.flex > a.w-10","boundingRect":{"top":641,"bottom":681,"left":194,"right":234,"width":40,"height":40},"snippet":"<a href=\"https://github.com/alberfdez1523\" target=\"_blank\" class=\"w-10 h-10 glass rounded-lg flex items-center justify-center t-text-40 hove…\" data-cursor=\"\">","nodeLabel":"div.grid > div.space-y-8 > div.flex > a.w-10","explanation
+  {"node":{"type":"node","lhId":"1-6-A","path":"1,HTML,1,BODY,6,MAIN,6,SECTION,2,DIV,0,DIV,3,DIV,0,DIV,1,DIV,5,DIV,0,A","selector":"div.glass > div.relative > div.flex > a.w-12","boundingRect":{"top":7141,"bottom":7189,"left":153,"right":201,"width":48,"height":48},"snippet":"<a href=\"https://www.linkedin.com/in/alberto-fern%C3%A1ndez-palomo-38a583267/\" target=\"_blank\" class=\"w-12 h-12 glass rounded-xl flex items-center justify-center t-text-40 hove…\" data-cursor=\"\">","nodeLabel":"div.glas
+  {"node":{"type":"node","lhId":"1-7-A","path":"1,HTML,1,BODY,6,MAIN,6,SECTION,2,DIV,0,DIV,3,DIV,0,DIV,1,DIV,5,DIV,1,A","selector":"div.glass > div.relative > div.flex > a.w-12","boundingRect":{"top":7141,"bottom":7189,"left":213,"right":261,"width":48,"height":48},"snippet":"<a href=\"https://github.com/alberfdez1523\" target=\"_blank\" class=\"w-12 h-12 glass rounded-xl flex items-center justify-center t-text-40 hove…\" data-cursor=\"\">","nodeLabel":"div.glass > div.relative > div.flex > a.w-12
+Type: table
+
+====== image-delivery-insight (score: 0) ======
+Title: Improve image delivery
+Display: Est savings of 194 KiB
+Desc: Reducing the download time of images can improve the perceived load time of the page and LCP. [Learn more about optimizing image size](https://developer.chrome.com/docs/performance/insights/image-delivery)
+Items (2):
+  {"node":{"type":"node","lhId":"page-0-IMG","path":"1,HTML,1,BODY,6,MAIN,0,SECTION,0,DIV,0,DIV,3,DIV,0,DIV,2,DIV,0,IMG","selector":"div.relative > div.relative > div.relative > img.w-full","boundingRect":{"top":760,"bottom":1355,"left":25,"right":387,"width":362,"height":595},"snippet":"<img src=\"/profile-photo.jpg\" alt=\"Alberto Fernández\" class=\"w-full h-75 object-cover t-img mix-blend-luminosity hover:opacity-100 hove…\" loading=\"eager\" fetchpriority=\"high\" decoding=\"async\" width=\"6
+  {"node":{"type":"node","lhId":"page-1-IMG","path":"1,HTML,1,BODY,6,MAIN,1,SECTION,2,DIV,0,DIV,1,DIV,0,DIV,0,DIV,0,IMG","selector":"div.lg:col-span-2 > div.relative > div.aspect-[4/5] > img.w-full","boundingRect":{"top":1529,"bottom":1982,"left":25,"right":387,"width":362,"height":453},"snippet":"<img src=\"/Imagen-TFG.jpg\" alt=\"Alberto trabajando\" class=\"w-full h-full object-cover opacity-70 group-hover:opacity-90 group-hover:s…\" loading=\"lazy\" decoding=\"async\" width=\"500\" height=\"62
+Type: table
+
+====== network-dependency-tree-insight (score: 0) ======
+Title: Network dependency tree
+Desc: [Avoid chaining critical requests](https://developer.chrome.com/docs/performance/insights/network-dependency-tree) by reducing the length of chains, reducing the download size of resources, or deferring the download of unnecessary resources to improve page load.
+Items (3):
+  {"type":"list-section","value":{"type":"network-tree","chains":{"D1AD3775485F20C95548243C49D6546D":{"url":"https://alberfdez15.vercel.app/","navStartToEndTime":199,"transferSize":11479,"isLongest":true,"children":{"17976.6":{"url":"https://alberfdez15.vercel.app/_astro/Layout.astro_astro_type_script_index_0_lang.BHl3rEdq.js","navStartToEndTime":295,"transferSize":4136,"isLongest":true,"children":{}},"17976.4":{"url":"https://alberfdez15.vercel.app/_astro/page.B1D-nYk3.js","navStartToEndTime":295
+  {"type":"list-section","title":"Preconnected origins","description":"[preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints help the browser establish a connection earlier in the page load, saving time when the first request for that origin is made. The following are the origins that the page preconnected to.","value":{"type":"table","headings":[{"key":"origin","valueType":"text","subItemsHeading":{"key":"warning"},"label":"Origin"},{"key":"source","val
+  {"type":"list-section","title":"Preconnect candidates","description":"Add [preconnect](https://developer.chrome.com/docs/lighthouse/performance/uses-rel-preconnect/) hints to your most important origins, but try to use no more than 4.","value":{"type":"text","value":"No additional origins are good candidates for preconnecting"}}
+
+====== first-contentful-paint (score: 0.49) ======
+Title: First Contentful Paint
+Display: 3.0 s
+Desc: First Contentful Paint marks the time at which the first text or image is painted. [Learn more about the First Contentful Paint metric](https://developer.chrome.com/docs/lighthouse/performance/first-contentful-paint/).
+
+====== render-blocking-insight (score: 0.5) ======
+Title: Render blocking requests
+Desc: Requests are blocking the page's initial render, which may delay LCP. [Deferring or inlining](https://developer.chrome.com/docs/performance/insights/render-blocking) can move these network requests out of the critical path.
+Items (1):
+  {"url":"https://alberfdez15.vercel.app/_astro/index.CIFWID7-.css","totalBytes":6891,"wastedMs":176}
+Type: table
+
+====== largest-contentful-paint (score: 0.67) ======
+Title: Largest Contentful Paint
+Display: 3.4 s
+Desc: Largest Contentful Paint marks the time at which the largest text or image is painted. [Learn more about the Largest Contentful Paint metric](https://developer.chrome.com/docs/lighthouse/performance/lighthouse-largest-contentful-paint/)
+
+====== interactive (score: 0.93) ======
+Title: Time to Interactive
+Display: 3.4 s
+Desc: Time to Interactive is the amount of time it takes for the page to become fully interactive. [Learn more about the Time to Interactive metric](https://developer.chrome.com/docs/lighthouse/performance/interactive/).
+
+====== speed-index (score: 0.94) ======
+Title: Speed Index
+Display: 3.0 s
+Desc: Speed Index shows how quickly the contents of a page are visibly populated. [Learn more about the Speed Index metric](https://developer.chrome.com/docs/lighthouse/performance/speed-index/).
+
+====== unused-css-rules (score: 1) ======
+Title: Reduce unused CSS
+Desc: Reduce unused rules from stylesheets and defer CSS not used for above-the-fold content to decrease bytes consumed by network activity. [Learn how to reduce unused CSS](https://developer.chrome.com/docs/lighthouse/performance/unused-css-rules/).
+Type: opportunity
+
+====== unused-javascript (score: 1) ======
+Title: Reduce unused JavaScript
+Desc: Reduce unused JavaScript and defer loading scripts until they are required to decrease bytes consumed by network activity. [Learn how to reduce unused JavaScript](https://developer.chrome.com/docs/lighthouse/performance/unused-javascript/).
+Type: opportunity
+
+====== heading-order (score: 1) ======
+Title: Heading elements appear in a sequentially-descending order
+Desc: Properly ordered headings that do not skip levels convey the semantic structure of the page, making it easier to navigate and understand when using assistive technologies. [Learn more about heading order](https://dequeuniversity.com/rules/axe/4.11/heading-order).
+Type: table
+
+====== image-alt (score: 1) ======
+Title: Image elements have `[alt]` attributes
+Desc: Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. [Learn more about the `alt` attribute](https://dequeuniversity.com/rules/axe/4.11/image-alt).
+Type: table
+
+====== meta-description (score: 1) ======
+Title: Document has a meta description
+Desc: Meta descriptions may be included in search results to concisely summarize page content. [Learn more about the meta description](https://developer.chrome.com/docs/lighthouse/seo/meta-description/).
+
+====== document-title (score: 1) ======
+Title: Document has a `<title>` element
+Desc: The title gives screen reader users an overview of the page, and search engine users rely on it heavily to determine if a page is relevant to their search. [Learn more about document titles](https://dequeuniversity.com/rules/axe/4.11/document-title).
+Type: table
+
+====== hreflang (score: 1) ======
+Title: Document has a valid `hreflang`
+Desc: hreflang links tell search engines what version of a page they should list in search results for a given language or region. [Learn more about `hreflang`](https://developer.chrome.com/docs/lighthouse/seo/hreflang/).
+Type: table
+
+====== total-byte-weight (score: 1) ======
+Title: Avoids enormous network payloads
+Display: Total size was 381 KiB
+Desc: Large network payloads cost users real money and are highly correlated with long load times. [Learn how to reduce payload sizes](https://developer.chrome.com/docs/lighthouse/performance/total-byte-weight/).
+Items (10):
+  {"url":"https://alberfdez15.vercel.app/profile-photo.jpg","totalBytes":148784}
+  {"url":"https://alberfdez15.vercel.app/Imagen-TFG.jpg","totalBytes":112972}
+  {"url":"https://fonts.gstatic.com/s/inter/v20/UcC73FwrK3iLTeHuS_nVMrMxCp50SjIa1ZL7W0Q5nw.woff2","totalBytes":48983}
+  {"url":"https://fonts.gstatic.com/s/jetbrainsmono/v24/tDbv2o-flEEny0FZhsfKu5WU4zr3E_BX0PnT8RD8yKwBNntkaToggR7BYRbKPxDcwgknk-4.woff2","totalBytes":31467}
+  {"url":"https://fonts.gstatic.com/s/spacegrotesk/v22/V8mDoQDjQSkFtoMM3T6r8E7mPbF4C_k3HqU.woff2","totalBytes":22447}
+  {"url":"https://alberfdez15.vercel.app/","totalBytes":11479}
+  {"url":"https://alberfdez15.vercel.app/_astro/index.CIFWID7-.css","totalBytes":6891}
+  {"url":"https://alberfdez15.vercel.app/_astro/Layout.astro_astro_type_script_index_0_lang.BHl3rEdq.js","totalBytes":4136}
+  {"url":"https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap","totalBytes":1546}
+  {"url":"https://alberfdez15.vercel.app/_astro/page.B1D-nYk3.js","totalBytes":1242}
+Type: table
+
+====== html-has-lang (score: 1) ======
+Title: `<html>` element has a `[lang]` attribute
+Desc: If a page doesn't specify a `lang` attribute, a screen reader assumes that the page is in the default language that the user chose when setting up the screen reader. If the page isn't actually in the default language, then the screen reader might not announce the page's text correctly. [Learn more a
+Type: table

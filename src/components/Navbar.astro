@@ -40,7 +40,7 @@ const navItems = [
         id="btn-lang"
         class="w-10 h-10 glass rounded-lg flex items-center justify-center font-['JetBrains_Mono'] text-xs font-bold t-accent hover:bg-[var(--c-glass-h)] transition-all duration-300"
         data-cursor
-        aria-label="Toggle language"
+        aria-label="EN"
       >
         EN
       </button>
@@ -76,7 +76,7 @@ const navItems = [
       </a>
 
       <!-- Mobile Menu Toggle -->
-      <button id="mobile-toggle" class="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 glass rounded-lg" data-cursor>
+      <button id="mobile-toggle" class="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 glass rounded-lg" data-cursor aria-label="Menu" aria-expanded="false">
         <span class="w-5 h-0.5 t-text-70 transition-all duration-300 origin-center bg-current" id="bar1"></span>
         <span class="w-5 h-0.5 t-text-70 transition-all duration-300 bg-current" id="bar2"></span>
         <span class="w-3.5 h-0.5 t-text-70 transition-all duration-300 origin-center bg-current" id="bar3"></span>
@@ -139,6 +139,7 @@ const navItems = [
   let isOpen = false;
   toggle?.addEventListener('click', () => {
     isOpen = !isOpen;
+    toggle?.setAttribute('aria-expanded', String(isOpen));
     if (isOpen) {
       menu?.classList.remove('hidden');
       setTimeout(() => { menu?.classList.remove('opacity-0','translate-y-[-10px]'); menu?.classList.add('opacity-100','translate-y-0'); }, 10);

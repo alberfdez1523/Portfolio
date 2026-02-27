@@ -22,16 +22,17 @@ const { title } = Astro.props;
     <meta property="og:url" content="https://alberfdez15.vercel.app/" />
     <meta property="og:title" content="Alberto Fernández — Software & AI Engineer" />
     <meta property="og:description" content="Alberto Fernández - Ingeniero de Software & IA" />
-    <meta property="og:image" content="https://alberfdez15.vercel.app/profile-photo.jpg" />
+    <meta property="og:image" content="https://alberfdez15.vercel.app/profile-photo.webp" />
     <meta property="og:locale" content="es_ES" />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Alberto Fernández — Software & AI Engineer" />
     <meta name="twitter:description" content="Alberto Fernández - Ingeniero de Software & IA" />
-    <meta name="twitter:image" content="https://alberfdez15.vercel.app/profile-photo.jpg" />
+    <meta name="twitter:image" content="https://alberfdez15.vercel.app/profile-photo.webp" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preload" as="image" type="image/webp" href="/profile-photo.webp" fetchpriority="high" />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" />
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'" />
     <noscript><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" /></noscript>
@@ -475,7 +476,10 @@ const { title } = Astro.props;
         localStorage.setItem('lang', lang);
         // Update button label
         const btn = document.getElementById('btn-lang');
-        if (btn) btn.textContent = lang === 'es' ? 'EN' : 'ES';
+        if (btn) {
+          btn.textContent = lang === 'es' ? 'EN' : 'ES';
+          btn.setAttribute('aria-label', lang === 'es' ? 'EN' : 'ES');
+        }
         // Swap all translatable text
         document.querySelectorAll('[data-i18n]').forEach((el) => {
           const key = el.getAttribute('data-i18n')!;
@@ -493,7 +497,10 @@ const { title } = Astro.props;
       // Init lang button label
       const initLang = document.documentElement.getAttribute('data-lang') || 'es';
       const btnL = document.getElementById('btn-lang');
-      if (btnL) btnL.textContent = initLang === 'es' ? 'EN' : 'ES';
+      if (btnL) {
+        btnL.textContent = initLang === 'es' ? 'EN' : 'ES';
+        btnL.setAttribute('aria-label', initLang === 'es' ? 'EN' : 'ES');
+      }
 
       // ===========================
       // SCROLL REVEAL
