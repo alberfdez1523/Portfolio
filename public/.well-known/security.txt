@@ -1,0 +1,4 @@
+Contact: mailto:alberfdez2000@gmail.com
+Preferred-Languages: es, en
+Canonical: https://alberfdez15.vercel.app/.well-known/security.txt
+Expires: 2027-02-27T00:00:00.000Z

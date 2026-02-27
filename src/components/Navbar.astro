@@ -64,10 +64,9 @@ const navItems = [
 
       <!-- Download CV (desktop) -->
       <a
-        href="https://alberfdez15.vercel.app/assets/cv.pdf"
+        href="/cv.pdf"
         target="_blank"
-        class="hidden md:flex items-center gap-2 px-5 py-2.5 accent-bg rounded-full font-['Space_Grotesk'] font-semibold text-sm hover:shadow-[0_0_30px_color-mix(in_srgb,var(--c-accent)_30%,transparent)] transition-all duration-300"
-        style="color:var(--c-bg);"
+        class="hidden md:flex items-center gap-2 px-5 py-2.5 accent-bg rounded-full font-['Space_Grotesk'] font-semibold text-sm hover:shadow-[0_0_30px_color-mix(in_srgb,var(--c-accent)_30%,transparent)] transition-all duration-300 text-c-bg"
         data-cursor
       >
         <span data-i18n="nav.cv">Descargar CV</span>
@@ -78,9 +77,9 @@ const navItems = [
 
       <!-- Mobile Menu Toggle -->
       <button id="mobile-toggle" class="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 glass rounded-lg" data-cursor>
-        <span class="w-5 h-0.5 t-text-70 transition-all duration-300 origin-center" style="background:currentColor;" id="bar1"></span>
-        <span class="w-5 h-0.5 t-text-70 transition-all duration-300" style="background:currentColor;" id="bar2"></span>
-        <span class="w-3.5 h-0.5 t-text-70 transition-all duration-300 origin-center" style="background:currentColor;" id="bar3"></span>
+        <span class="w-5 h-0.5 t-text-70 transition-all duration-300 origin-center bg-current" id="bar1"></span>
+        <span class="w-5 h-0.5 t-text-70 transition-all duration-300 bg-current" id="bar2"></span>
+        <span class="w-3.5 h-0.5 t-text-70 transition-all duration-300 origin-center bg-current" id="bar3"></span>
       </button>
     </div>
   </div>
@@ -98,10 +97,9 @@ const navItems = [
         </a>
       ))}
       <a
-        href="https://alberfdez15.vercel.app/assets/cv.pdf"
+        href="/cv.pdf"
         target="_blank"
-        class="mt-4 flex items-center justify-center gap-2 px-5 py-3 accent-bg rounded-xl font-['Space_Grotesk'] font-semibold"
-        style="color:var(--c-bg);"
+        class="mt-4 flex items-center justify-center gap-2 px-5 py-3 accent-bg rounded-xl font-['Space_Grotesk'] font-semibold text-c-bg"
       >
         <span data-i18n="nav.cv">Descargar CV</span>
       </a>
