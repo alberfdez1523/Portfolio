@@ -3,7 +3,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import confetti from 'canvas-confetti';
 import { motion } from 'framer-motion';
-import AnimatedText from './AnimatedText';
 import { useLanguage } from '@/contexts/LanguageContext';
 
 type CellState = 'correct' | 'present' | 'absent';
@@ -84,13 +83,6 @@ export default function GameSection() {
     return () => clearTimeout(timeout);
   }, [status]);
 
-  useEffect(() => {
-    setCurrentGuess('');
-    setAttempts([]);
-    setStatus('playing');
-    setMessage('');
-  }, [level]);
-
   const submitGuess = () => {
     if (status === 'completed') return;
 
@@ -128,6 +120,10 @@ export default function GameSection() {
 
   const goNextLevel = () => {
     if (level < words.length - 1) {
+      setCurrentGuess('');
+      setAttempts([]);
+      setStatus('playing');
+      setMessage('');
       setLevel((prev) => prev + 1);
     }
   };

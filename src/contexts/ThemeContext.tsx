@@ -21,27 +21,24 @@ const ThemeContext = createContext<ThemeContextType>({
   toggleTheme: () => {},
 });
 
-export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>('dark');
+function getInitialTheme(): Theme {
+  if (typeof window === 'undefined') return 'dark';
 
-  /* Leer preferencia guardada */
+  const stored = localStorage.getItem('portfolio-theme') as Theme | null;
+  return stored === 'dark' || stored === 'light' ? stored : 'dark';
+}
+
+export function ThemeProvider({ children }: { children: React.ReactNode }) {
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+
+  /* Sincronizar DOM + persistencia */
   useEffect(() => {
-    const stored = localStorage.getItem('portfolio-theme') as Theme | null;
-    if (stored === 'dark' || stored === 'light') {
-      setTheme(stored);
-      document.documentElement.setAttribute('data-theme', stored);
-    } else {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
-  }, []);
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem('portfolio-theme', theme);
+  }, [theme]);
 
   const toggleTheme = useCallback(() => {
-    setTheme((prev) => {
-      const next = prev === 'dark' ? 'light' : 'dark';
-      localStorage.setItem('portfolio-theme', next);
-      document.documentElement.setAttribute('data-theme', next);
-      return next;
-    });
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
   }, []);
 
   return (

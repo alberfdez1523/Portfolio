@@ -12,7 +12,7 @@
 'use client';
 
 import { useRef, useEffect } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { SOCIAL_LINKS } from '@/lib/constants';
@@ -80,7 +80,6 @@ interface ProjectCardProps {
 
 function ProjectCard({ project, prefersReduced, viewOnGithub, projectPrefix }: ProjectCardProps) {
   const cardRef = useRef<HTMLElement>(null);
-  const isInView = useInView(cardRef, { once: true, margin: '-10% 0px' });
 
   useEffect(() => {
     if (prefersReduced || !cardRef.current) return;

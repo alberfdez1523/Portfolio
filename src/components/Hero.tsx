@@ -28,7 +28,8 @@ export default function Hero() {
   const pageContentRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const prefersReduced = useReducedMotion();
-  const [introDone, setIntroDone] = useState(false);
+  const [animationDone, setAnimationDone] = useState(false);
+  const introDone = prefersReduced || animationDone;
   const { t } = useLanguage();
 
   /* Nombre completo para la animación letra por letra */
@@ -40,7 +41,6 @@ export default function Hero() {
     if (!sectionRef.current || !introRef.current) return;
 
     if (prefersReduced) {
-      setIntroDone(true);
       gsap.set(introRef.current, { autoAlpha: 0 });
       gsap.set(pageContentRef.current, { autoAlpha: 1 });
       return;
@@ -52,7 +52,7 @@ export default function Hero() {
 
     const tl = gsap.timeline({
       onComplete: () => {
-        setIntroDone(true);
+        setAnimationDone(true);
         document.body.style.overflow = '';
         ScrollTrigger.refresh();
       },
@@ -236,7 +236,7 @@ export default function Hero() {
                 </div>
                 <div className="absolute bottom-4 left-4 md:-left-4">
                   <div className="bg-noir-surface/90 backdrop-blur-sm border border-noir-border px-4 py-2">
-                    <span className="font-mono text-[10px] tracking-wider text-cream-muted">// status</span>
+                    <span className="font-mono text-[10px] tracking-wider text-cream-muted">{'// status'}</span>
                     <p className="font-mono text-xs text-cream mt-0.5">{t.hero.statusDetail}</p>
                   </div>
                 </div>

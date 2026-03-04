@@ -14,6 +14,18 @@ import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { useReducedMotion } from '@/hooks/useReducedMotion';
 
+const MOTION_TAGS = {
+  div: motion.div,
+  p: motion.p,
+  span: motion.span,
+  h1: motion.h1,
+  h2: motion.h2,
+  h3: motion.h3,
+  h4: motion.h4,
+  h5: motion.h5,
+  h6: motion.h6,
+};
+
 interface AnimatedTextProps {
   children: React.ReactNode;
   /** Clase CSS adicional */
@@ -72,8 +84,9 @@ export default function AnimatedText({
     },
   };
 
-  // Usamos motion.div y le aplicamos la clase del tag deseado
-  const MotionTag = motion.create(Tag as 'div');
+  const MotionTag = typeof Tag === 'string'
+    ? (MOTION_TAGS[Tag as keyof typeof MOTION_TAGS] ?? motion.div)
+    : motion.div;
 
   return (
     <MotionTag

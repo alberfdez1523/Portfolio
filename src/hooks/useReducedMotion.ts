@@ -10,13 +10,17 @@
 
 import { useEffect, useState } from 'react';
 
+function getInitialPrefersReduced(): boolean {
+  if (typeof window === 'undefined') return false;
+  return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+}
+
 export function useReducedMotion(): boolean {
-  const [prefersReduced, setPrefersReduced] = useState(false);
+  const [prefersReduced, setPrefersReduced] = useState(getInitialPrefersReduced);
 
   useEffect(() => {
     // Consulta la media query del navegador
     const query = window.matchMedia('(prefers-reduced-motion: reduce)');
-    setPrefersReduced(query.matches);
 
     // Escucha cambios en tiempo real (ej: usuario cambia la config)
     const handler = (event: MediaQueryListEvent) => {

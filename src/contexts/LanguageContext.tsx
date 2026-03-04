@@ -19,25 +19,24 @@ const LanguageContext = createContext<LanguageContextType>({
   t: translations.es,
 });
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [lang, setLang] = useState<Lang>('es');
+function getInitialLang(): Lang {
+  if (typeof window === 'undefined') return 'es';
 
-  /* Leer preferencia guardada + sincronizar atributo lang del html */
+  const stored = localStorage.getItem('portfolio-lang') as Lang | null;
+  return stored === 'es' || stored === 'en' ? stored : 'es';
+}
+
+export function LanguageProvider({ children }: { children: React.ReactNode }) {
+  const [lang, setLang] = useState<Lang>(getInitialLang);
+
+  /* Sincronizar atributo lang del html + persistencia */
   useEffect(() => {
-    const stored = localStorage.getItem('portfolio-lang') as Lang | null;
-    if (stored === 'es' || stored === 'en') {
-      setLang(stored);
-      document.documentElement.setAttribute('lang', stored);
-    }
-  }, []);
+    document.documentElement.lang = lang;
+    localStorage.setItem('portfolio-lang', lang);
+  }, [lang]);
 
   const toggleLang = useCallback(() => {
-    setLang((prev) => {
-      const next = prev === 'es' ? 'en' : 'es';
-      localStorage.setItem('portfolio-lang', next);
-      document.documentElement.setAttribute('lang', next);
-      return next;
-    });
+    setLang((prev) => (prev === 'es' ? 'en' : 'es'));
   }, []);
 
   return (
