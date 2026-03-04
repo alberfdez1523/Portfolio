@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://alberfdez15.vercel.app/sitemap.xml
