@@ -44,6 +44,9 @@ export const metadata: Metadata = {
   title: 'Alberto Fernández — Ingeniero de Software & IA',
   description:
     'Portfolio de Alberto Fernández. Ingeniero de Software, Investigador en IA y Quantum Machine Learning. Máster en Inteligencia Artificial @ UAX.',
+  icons: {
+    icon: '/icon.png',
+  },
   keywords: [
     'Alberto Fernández',
     'Ingeniero Software',
