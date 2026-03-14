@@ -40,21 +40,26 @@ export default function LenisProvider({ children }: LenisProviderProps) {
     });
 
     lenisRef.current = lenis;
+    const onScroll = () => ScrollTrigger.update();
+    const onTick = (time: number) => {
+      lenis.raf(time * 1000);
+    };
 
     /* Sincronizar Lenis con GSAP ScrollTrigger:
        - Cada frame de Lenis actualiza la posición de ScrollTrigger
        - GSAP ticker llama a lenis.raf() para mantenerlo en sync */
-    lenis.on('scroll', ScrollTrigger.update);
+    lenis.on('scroll', onScroll);
 
-    gsap.ticker.add((time) => {
-      lenis.raf(time * 1000);
-    });
+    gsap.ticker.add(onTick);
 
     // Desactivar lag smoothing para evitar saltos visibles
     gsap.ticker.lagSmoothing(0);
 
     return () => {
+      gsap.ticker.remove(onTick);
+      lenis.off('scroll', onScroll);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
 

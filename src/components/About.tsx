@@ -51,16 +51,16 @@ export default function About() {
   return (
     <section
       id="about"
-      className="py-24 md:py-32 lg:py-40"
+      className="py-20 md:py-32 lg:py-40"
       aria-labelledby="about-heading"
     >
       <div className="container-editorial">
-        <SectionHeading label={t.about.label} title={t.about.heading} />
+        <SectionHeading id="about-heading" label={t.about.label} title={t.about.heading} />
 
         {/* Grid editorial: imagen + texto */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-start">
+        <div className="grid grid-cols-1 items-start gap-10 md:grid-cols-12 md:gap-16">
           {/* === Columna izquierda: imagen === */}
-          <div className="md:col-span-5">
+          <div className="order-2 md:order-1 md:col-span-5">
             <div ref={imageRef} className="relative">
               <div className="relative aspect-4/5 overflow-hidden">
                 <Image
@@ -79,9 +79,9 @@ export default function About() {
               </div>
 
               {/* Quote flotante en la esquina — toque editorial */}
-              <AnimatedText delay={0.4} className="mt-6 md:mt-8">
+              <AnimatedText delay={0.4} className="mt-5 md:mt-8">
                 <blockquote className="border-l-2 border-accent pl-4">
-                  <p className="font-serif text-sm italic text-cream-dim leading-relaxed">
+                  <p className="font-serif text-base italic leading-relaxed text-cream-dim">
                     &ldquo;{t.about.quote}&rdquo;
                   </p>
                 </blockquote>
@@ -90,7 +90,7 @@ export default function About() {
           </div>
 
           {/* === Columna derecha: texto y datos === */}
-          <div className="md:col-span-7">
+          <div className="order-1 md:order-2 md:col-span-7">
             {/* Párrafos bio */}
             {t.about.paragraphs.map((paragraph, index) => (
               <AnimatedText
@@ -106,13 +106,13 @@ export default function About() {
 
             {/* Highlights — métricas/roles clave en fila */}
             <AnimatedText delay={0.3}>
-              <div className="grid grid-cols-3 gap-4 mt-10 mb-10 py-8 border-y border-noir-border">
+              <div className="mt-10 mb-10 grid grid-cols-1 gap-4 border-y border-noir-border py-8 sm:grid-cols-3">
                 {t.about.highlights.map((item) => (
-                  <div key={item.label} className="text-center">
+                  <div key={item.label} className="text-left sm:text-center">
                     <span className="text-2xl mb-2 block" aria-hidden="true">
                       {item.icon}
                     </span>
-                    <span className="font-mono text-xs tracking-wider uppercase text-cream">
+                    <span className="font-mono text-sm tracking-[0.12em] uppercase text-cream">
                       {item.label}
                     </span>
                   </div>
@@ -123,14 +123,14 @@ export default function About() {
             {/* Intereses personales */}
             <AnimatedText delay={0.4}>
               <div>
-                <h3 className="font-mono text-xs tracking-[0.2em] uppercase text-cream-muted mb-4">
+                <h3 className="mb-4 font-mono text-sm tracking-[0.16em] uppercase text-cream-muted">
                   {t.about.interestsLabel}
                 </h3>
-                <div className="flex flex-wrap gap-3">
+                <div className="flex flex-wrap gap-2.5 sm:gap-3">
                   {t.about.interests.map((interest) => (
                     <span
                       key={interest.label}
-                      className="inline-flex items-center gap-2 px-4 py-2 bg-noir-surface border border-noir-border font-mono text-xs text-cream-dim hover:border-accent hover:text-cream transition-colors duration-300"
+                      className="inline-flex items-center gap-2 border border-noir-border bg-noir-surface px-4 py-2 font-mono text-sm text-cream-dim transition-colors duration-300 hover:border-accent hover:text-cream"
                     >
                       <span aria-hidden="true">{interest.icon}</span>
                       {interest.label}

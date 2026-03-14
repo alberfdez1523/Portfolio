@@ -20,46 +20,46 @@ export default function Experience() {
   return (
     <section
       id="experience"
-      className="py-24 md:py-32 lg:py-40"
+      className="py-20 md:py-32 lg:py-40"
       aria-labelledby="experience-heading"
     >
       <div className="container-editorial">
-        <SectionHeading label={t.experience.label} title={t.experience.title} />
+        <SectionHeading id="experience-heading" label={t.experience.label} title={t.experience.title} />
 
         {/* Timeline container */}
         <div className="relative">
           {/* Línea vertical del timeline — decorativa */}
           <div
-            className="absolute left-0 md:left-50 lg:left-60 top-0 bottom-0 w-px bg-noir-border"
+            className="absolute top-0 bottom-0 hidden w-px bg-noir-border md:block md:left-50 lg:left-60"
             aria-hidden="true"
           />
 
           {/* Items del timeline */}
-          <div className="space-y-16 md:space-y-20">
+          <div className="space-y-10 sm:space-y-14 md:space-y-20">
             {t.experience.items.map((exp, index) => (
               <AnimatedText key={exp.company} delay={index * 0.15}>
-                <article className="relative grid grid-cols-1 md:grid-cols-[200px_1fr] lg:grid-cols-[240px_1fr] gap-6 md:gap-12">
+                <article className="relative grid grid-cols-1 gap-5 border-l border-noir-border pl-5 sm:pl-6 md:grid-cols-[200px_1fr] md:gap-12 md:border-l-0 md:pl-0 lg:grid-cols-[240px_1fr]">
                   {/* Columna izquierda: fecha + empresa */}
-                  <div className="md:text-right md:pr-12 relative">
+                  <div className="relative flex flex-wrap items-center gap-x-3 gap-y-1 md:block md:text-right md:pr-12">
                     {/* Punto en la línea del timeline */}
                     <div
                       className="hidden md:block absolute right-0 top-2 w-2 h-2 bg-accent translate-x-[4.5px]"
                       aria-hidden="true"
                     />
-                    <p className="font-mono text-xs tracking-wider text-accent mb-1">
+                    <p className="mb-1 font-mono text-sm tracking-[0.12em] text-accent">
                       {exp.period}
                     </p>
-                    <p className="font-mono text-xs text-cream-muted">
+                    <p className="font-mono text-sm text-cream-muted">
                       {exp.company}
                     </p>
                   </div>
 
                   {/* Columna derecha: título + descripción + tags */}
                   <div className="md:pl-12 md:border-l md:border-transparent">
-                    <h3 className="font-serif text-2xl md:text-3xl italic text-cream mb-4">
+                    <h3 className="font-display text-2xl md:text-3xl text-cream mb-4 leading-[0.96]">
                       {exp.title}
                     </h3>
-                    <p className="text-cream-dim text-base leading-relaxed mb-6 max-w-2xl">
+                    <p className="mb-6 max-w-2xl text-lg leading-relaxed text-cream-dim">
                       {exp.description}
                     </p>
                     {/* Tags de tecnologías */}
@@ -67,7 +67,7 @@ export default function Experience() {
                       {exp.tags.map((tag) => (
                         <span
                           key={tag}
-                          className="font-mono text-[10px] tracking-wider uppercase px-3 py-1 bg-noir-surface border border-noir-border text-cream-muted"
+                          className="border border-noir-border bg-noir-surface px-3 py-1 font-mono text-xs tracking-[0.12em] text-cream-muted uppercase"
                         >
                           {tag}
                         </span>

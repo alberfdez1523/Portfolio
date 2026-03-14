@@ -36,6 +36,8 @@ interface AnimatedTextProps {
   variant?: 'fade-up' | 'clip';
   /** Etiqueta HTML a renderizar */
   as?: React.ElementType;
+  /** Id opcional para enlazar con aria-labelledby */
+  id?: string;
 }
 
 export default function AnimatedText({
@@ -44,6 +46,7 @@ export default function AnimatedText({
   delay = 0,
   variant = 'fade-up',
   as: Tag = 'div',
+  ...rest
 }: AnimatedTextProps) {
   const ref = useRef<HTMLDivElement>(null);
   // Se activa cuando el 20% del elemento es visible
@@ -52,7 +55,7 @@ export default function AnimatedText({
 
   // Si el usuario prefiere reducir movimiento, mostrar estático
   if (prefersReduced) {
-    return <Tag className={className}>{children}</Tag>;
+    return <Tag className={className} {...rest}>{children}</Tag>;
   }
 
   /* Variantes de animación:
@@ -95,6 +98,7 @@ export default function AnimatedText({
       initial="hidden"
       animate={isInView ? 'visible' : 'hidden'}
       variants={variants[variant]}
+      {...rest}
     >
       {children}
     </MotionTag>

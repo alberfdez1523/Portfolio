@@ -26,12 +26,35 @@ export default function Navbar() {
   const lineRef = useRef<HTMLDivElement>(null);
   const socialsRef = useRef<HTMLDivElement>(null);
   const closeBtnRef = useRef<HTMLButtonElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const tlRef = useRef<gsap.core.Timeline | null>(null);
+  const closeTimeoutRef = useRef<number | null>(null);
+  const scrollStateRef = useRef(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 100);
+    let frameId: number | null = null;
+
+    const updateScrolled = () => {
+      frameId = null;
+      const nextScrolled = window.scrollY > 100;
+      if (scrollStateRef.current === nextScrolled) return;
+
+      scrollStateRef.current = nextScrolled;
+      setScrolled(nextScrolled);
+    };
+
+    const handleScroll = () => {
+      if (frameId !== null) return;
+      frameId = window.requestAnimationFrame(updateScrolled);
+    };
+
+    updateScrolled();
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (frameId !== null) window.cancelAnimationFrame(frameId);
+    };
   }, []);
 
   /* Construir la timeline GSAP una sola vez — animación suave con opacity + transform */
@@ -91,19 +114,12 @@ export default function Navbar() {
     return () => { tl.kill(); };
   }, []);
 
-  /* Cerrar menú con Escape */
-  useEffect(() => {
-    if (!isOpen) return;
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeMenu();
-    };
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isOpen]);
-
   const openMenu = useCallback(() => {
     if (!tlRef.current) return;
+    if (closeTimeoutRef.current) {
+      window.clearTimeout(closeTimeoutRef.current);
+      closeTimeoutRef.current = null;
+    }
     tlRef.current.timeScale(1).play(0);
     setIsOpen(true);
   }, []);
@@ -112,10 +128,40 @@ export default function Navbar() {
     if (!tlRef.current) return;
     tlRef.current.timeScale(1.4).reverse();
     const dur = (tlRef.current.duration() / 1.4) * 1000;
-    setTimeout(() => {
+    if (closeTimeoutRef.current) window.clearTimeout(closeTimeoutRef.current);
+    closeTimeoutRef.current = window.setTimeout(() => {
       if (overlayRef.current) overlayRef.current.style.display = 'none';
+      menuButtonRef.current?.focus();
+      closeTimeoutRef.current = null;
     }, dur);
     setIsOpen(false);
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') closeMenu();
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    window.requestAnimationFrame(() => {
+      closeBtnRef.current?.focus();
+    });
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', onKeyDown);
+    };
+  }, [closeMenu, isOpen]);
+
+  useEffect(() => {
+    return () => {
+      if (closeTimeoutRef.current) window.clearTimeout(closeTimeoutRef.current);
+    };
   }, []);
 
   const handleLinkClick = useCallback(() => {
@@ -142,7 +188,7 @@ export default function Navbar() {
         <nav
           role="navigation"
           aria-label="Navegación principal"
-          className="container-editorial flex items-center justify-between h-16 md:h-20"
+          className="container-editorial flex items-center justify-between h-14 sm:h-16 md:h-20"
         >
           {/* Logo */}
           <a
@@ -155,14 +201,23 @@ export default function Navbar() {
 
           {/* Botones: idioma + tema + menú */}
           <div className="flex items-center gap-2 sm:gap-3 z-60">
+            <a
+              href={SOCIAL_LINKS.cv}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden lg:inline-flex items-center gap-2 border border-accent/35 px-4 py-2 font-mono text-xs tracking-[0.18em] text-accent uppercase transition-colors duration-300 hover:bg-accent hover:text-cream"
+            >
+              {t.nav.downloadCV}
+            </a>
+
             {/* Toggle idioma */}
             <button
               onClick={toggleLang}
-              className="group flex items-center justify-center w-9 h-9 border border-noir-border hover:border-cream-muted rounded-full transition-all duration-300"
+              className="group flex items-center justify-center w-11 h-11 border border-noir-border hover:border-cream-muted rounded-full transition-all duration-300"
               aria-label={lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}
               title={lang === 'es' ? 'Switch to English' : 'Cambiar a Español'}
             >
-              <span className="font-mono text-[10px] tracking-wider uppercase text-cream-dim group-hover:text-cream transition-colors duration-300">
+              <span className="font-mono text-xs tracking-[0.12em] uppercase text-cream-dim transition-colors duration-300 group-hover:text-cream">
                 {lang === 'es' ? 'EN' : 'ES'}
               </span>
             </button>
@@ -170,7 +225,7 @@ export default function Navbar() {
             {/* Toggle tema */}
             <button
               onClick={toggleTheme}
-              className="group flex items-center justify-center w-9 h-9 border border-noir-border hover:border-cream-muted rounded-full transition-all duration-300"
+              className="group flex items-center justify-center w-11 h-11 border border-noir-border hover:border-cream-muted rounded-full transition-all duration-300"
               aria-label={theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
               title={theme === 'dark' ? 'Modo claro' : 'Modo oscuro'}
             >
@@ -181,15 +236,17 @@ export default function Navbar() {
 
             {/* Botón menú hamburguesa (solo abre) */}
             <button
+              ref={menuButtonRef}
               onClick={openMenu}
-              className="relative group flex items-center gap-3"
+              className="relative group flex min-h-11 items-center gap-2 sm:gap-3"
               aria-label={t.nav.menu}
               aria-expanded={isOpen}
+              aria-controls="site-menu"
             >
-              <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-cream-dim group-hover:text-cream transition-colors duration-300 hidden sm:inline">
+              <span className="hidden font-mono text-xs tracking-[0.16em] uppercase text-cream-dim transition-colors duration-300 group-hover:text-cream sm:inline">
                 {t.nav.menu}
               </span>
-              <div className="w-8 h-8 flex flex-col justify-center items-center gap-1.5">
+              <div className="flex h-10 w-10 flex-col items-center justify-center gap-1.5">
                 <span className="block w-6 h-[1.5px] bg-cream transition-all duration-300" />
                 <span className="block w-6 h-[1.5px] bg-cream transition-all duration-300" />
               </div>
@@ -201,20 +258,25 @@ export default function Navbar() {
       {/* === PANEL FULLSCREEN DEL MENÚ === */}
       <div
         ref={overlayRef}
+        id="site-menu"
         className="fixed inset-0 z-55 bg-noir/98 backdrop-blur-lg flex-col items-center justify-center hidden"
         style={{ opacity: 0 }}
         role="dialog"
+        aria-modal="true"
         aria-label="Menú de navegación"
+        onClick={(event) => {
+          if (event.target === event.currentTarget) closeMenu();
+        }}
       >
         {/* === BOTÓN CERRAR (✕) — esquina superior derecha === */}
         <button
           ref={closeBtnRef}
           onClick={closeMenu}
-          className="absolute top-5 right-5 md:top-7 md:right-10 z-10 group flex items-center gap-3"
+          className="absolute top-4 right-4 md:top-7 md:right-10 z-10 group flex items-center gap-3"
           aria-label={t.nav.close}
           style={{ opacity: 0 }}
         >
-          <span className="font-mono text-[10px] tracking-[0.2em] uppercase text-cream-dim group-hover:text-cream transition-colors duration-300 hidden sm:inline">
+          <span className="hidden font-mono text-xs tracking-[0.16em] uppercase text-cream-dim transition-colors duration-300 group-hover:text-cream sm:inline">
             {t.nav.close}
           </span>
           <div className="w-10 h-10 flex items-center justify-center border border-noir-border group-hover:border-cream-muted rounded-full transition-all duration-300">
@@ -232,7 +294,7 @@ export default function Navbar() {
         />
 
         <nav className="relative z-10">
-          <ul className="flex flex-col items-center gap-5 md:gap-7" role="list">
+          <ul className="flex flex-col items-center gap-4 sm:gap-5 md:gap-7" role="list">
             {allItems.map((link, index) => {
               const isCV = link.href === SOCIAL_LINKS.cv;
               return (
@@ -248,8 +310,8 @@ export default function Navbar() {
                     className={`
                       block text-center transition-colors duration-300
                       ${isCV
-                        ? 'font-mono text-sm tracking-[0.3em] uppercase text-accent hover:text-cream mt-4'
-                        : 'font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl italic text-cream hover:text-accent'
+                        ? 'mt-4 font-mono text-base tracking-[0.24em] uppercase text-accent hover:text-cream'
+                        : 'font-serif text-[2rem] sm:text-4xl md:text-5xl lg:text-6xl italic text-cream hover:text-accent'
                       }
                     `}
                   >
@@ -257,7 +319,7 @@ export default function Navbar() {
                       link.label
                     ) : (
                       <>
-                        <span className="font-mono text-xs text-cream-muted mr-3 not-italic tracking-wider align-top">
+                        <span className="mr-3 align-top font-mono text-sm tracking-[0.12em] text-cream-muted not-italic">
                           {String(index + 1).padStart(2, '0')}
                         </span>
                         {link.label}
@@ -270,9 +332,9 @@ export default function Navbar() {
           </ul>
         </nav>
 
-        <div ref={socialsRef} className="absolute bottom-8 left-0 right-0 flex justify-center gap-8" style={{ opacity: 0 }}>
-          <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="font-mono text-xs text-cream-muted hover:text-accent transition-colors duration-300">LinkedIn</a>
-          <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="font-mono text-xs text-cream-muted hover:text-accent transition-colors duration-300">GitHub</a>
+        <div ref={socialsRef} className="absolute bottom-6 left-0 right-0 flex justify-center gap-6 sm:gap-8" style={{ opacity: 0 }}>
+          <a href={SOCIAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" className="font-mono text-sm text-cream-muted transition-colors duration-300 hover:text-accent">LinkedIn</a>
+          <a href={SOCIAL_LINKS.github} target="_blank" rel="noopener noreferrer" className="font-mono text-sm text-cream-muted transition-colors duration-300 hover:text-accent">GitHub</a>
         </div>
       </div>
     </>

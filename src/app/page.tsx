@@ -6,17 +6,19 @@
    Education → Projects → Contact → Footer
    ================================================================ */
 
+import dynamic from 'next/dynamic';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import Marquee from '@/components/Marquee';
-import About from '@/components/About';
-import Skills from '@/components/Skills';
-import Experience from '@/components/Experience';
-import Education from '@/components/Education';
-import Projects from '@/components/Projects';
-import GameSection from '@/components/GameSection';
-import Contact from '@/components/Contact';
-import Footer from '@/components/Footer';
+
+const Marquee = dynamic(() => import('@/components/Marquee'));
+const About = dynamic(() => import('@/components/About'));
+const Skills = dynamic(() => import('@/components/Skills'));
+const Experience = dynamic(() => import('@/components/Experience'));
+const Education = dynamic(() => import('@/components/Education'));
+const Projects = dynamic(() => import('@/components/Projects'));
+const GameSection = dynamic(() => import('@/components/LazyGameSection'));
+const Contact = dynamic(() => import('@/components/Contact'));
+const Footer = dynamic(() => import('@/components/Footer'));
 
 export default function Home() {
   return (
@@ -24,12 +26,12 @@ export default function Home() {
       {/* Navegación fija — se superpone sobre todo el contenido */}
       <Navbar />
 
-      <main role="main">
+      <main id="main-content" role="main" tabIndex={-1}>
         {/* Hero: sección principal con nombre gigante y parallax */}
         <Hero />
 
         {/* Separador visual entre hero y marquee */}
-        <div className="h-16 md:h-24" aria-hidden="true" />
+        <div className="h-10 sm:h-12 md:h-24" aria-hidden="true" />
 
         {/* Marquee: ticker horizontal infinito de roles */}
         <Marquee />

@@ -14,18 +14,20 @@ interface SectionHeadingProps {
   label: string;
   /** Título principal de la sección */
   title: string;
+  /** Id para conectar con aria-labelledby de la sección */
+  id?: string;
   /** Alineación: left (por defecto) o center */
   align?: 'left' | 'center';
 }
 
-export default function SectionHeading({ label, title, align = 'left' }: SectionHeadingProps) {
+export default function SectionHeading({ label, title, id, align = 'left' }: SectionHeadingProps) {
   const alignClass = align === 'center' ? 'text-center' : 'text-left';
 
   return (
-    <div className={`mb-16 md:mb-20 ${alignClass}`}>
+    <div className={`mb-12 md:mb-20 ${alignClass}`}>
       {/* Etiqueta de categoría — monospace, tracking amplio, acento */}
       <AnimatedText delay={0} variant="fade-up">
-        <span className="font-mono text-xs tracking-[0.3em] uppercase text-accent">
+        <span className="font-mono text-sm tracking-[0.24em] uppercase text-accent">
           {label}
         </span>
       </AnimatedText>
@@ -41,7 +43,7 @@ export default function SectionHeading({ label, title, align = 'left' }: Section
       </AnimatedText>
 
       {/* Título principal — serif grande para impacto editorial */}
-      <AnimatedText delay={0.2} variant="clip" as="h2">
+      <AnimatedText delay={0.2} variant="clip" as="h2" id={id}>
         <span className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl italic text-cream leading-tight">
           {title}
         </span>

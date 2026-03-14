@@ -1,7 +1,7 @@
 /* ================================================================
    Layout raíz — Configuración global del portfolio
    ================================================================
-   Define las fuentes (Instrument Serif + Inter + Geist Mono),
+   Define las fuentes locales del portfolio,
    metadata SEO, y envuelve la app con el LenisProvider para
    scroll suave global.
    ================================================================ */
@@ -11,12 +11,13 @@ import { Inter, Instrument_Serif } from 'next/font/google';
 import { Geist_Mono } from 'next/font/google';
 import LenisProvider from '@/components/LenisProvider';
 import Providers from '@/components/Providers';
+import SkipLink from '@/components/SkipLink';
 import './globals.css';
 
 /* === FUENTES ===
-   Instrument Serif: display/headings — elegante, editorial, serif con personalidad
-   Inter: body — ultra legible, moderna, profesional
-   Geist Mono: código/etiquetas — tech feel, excelente legibilidad mono */
+   Instrument Serif: display/headings editorial
+   Inter: body/UI
+   Geist Mono: labels y microcopy */
 const instrumentSerif = Instrument_Serif({
   variable: '--font-instrument-serif',
   subsets: ['latin'],
@@ -73,6 +74,7 @@ export default function RootLayout({
       >
         {/* Providers: contextos de idioma + tema */}
         <Providers>
+          <SkipLink />
           {/* LenisProvider activa el scroll suave + sync con GSAP ScrollTrigger */}
           <LenisProvider>
             {children}

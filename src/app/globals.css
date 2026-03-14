@@ -20,6 +20,7 @@
   --color-accent-hover: #D4653B;
 
   /* --- Tipografías (variables inyectadas por next/font en layout.tsx) --- */
+  --font-display: var(--font-instrument-serif);
   --font-serif: var(--font-instrument-serif);
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
@@ -51,13 +52,23 @@ html {
 }
 
 body {
-  background: var(--color-noir);
+  background-color: var(--color-noir);
+  background-image:
+    radial-gradient(circle at 12% 10%, color-mix(in oklab, var(--color-accent) 16%, transparent), transparent 30%),
+    radial-gradient(circle at 88% 22%, color-mix(in oklab, var(--color-cream) 8%, transparent), transparent 26%);
+  background-attachment: fixed;
   color: var(--color-cream);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-sans), "Segoe UI", sans-serif;
+  font-size: 1.02rem;
+  line-height: 1.55;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.4s ease;
+}
+
+main:focus {
+  outline: none;
 }
 
 /* Selección de texto con el color acento */
@@ -101,9 +112,38 @@ body {
   border-radius: 2px;
 }
 
+[id] {
+  scroll-margin-top: 6.5rem;
+}
+
 /* ============================
    UTILIDADES
    ============================ */
+
+.skip-link {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 120;
+  padding: 0.75rem 1rem;
+  background: var(--color-cream);
+  color: var(--color-noir);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transform: translateY(-140%);
+  transition: transform 0.2s ease;
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+}
+
+.font-display {
+  font-family: var(--font-display), serif;
+  font-style: italic;
+}
 
 .sr-only {
   position: absolute;
@@ -145,4 +185,15 @@ body {
 }
 .animate-marquee {
   animation: marquee 25s linear infinite;
+}
+
+@media (max-width: 767px) {
+  body {
+    background-attachment: scroll;
+  }
+
+  .container-editorial {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }

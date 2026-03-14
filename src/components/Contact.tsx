@@ -53,7 +53,7 @@ export default function Contact() {
   return (
     <section
       id="contact"
-      className="py-24 md:py-32 lg:py-40 bg-noir"
+      className="py-20 md:py-32 lg:py-40 bg-noir"
       aria-labelledby="contact-heading"
     >
       <div className="container-editorial">
@@ -64,24 +64,24 @@ export default function Contact() {
           aria-hidden="true"
         />
 
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-16">
           {/* Columna izquierda: gran CTA editorial */}
           <div className="md:col-span-8">
             <AnimatedText>
-              <span className="font-mono text-xs tracking-[0.3em] uppercase text-accent block mb-6">
+              <span className="mb-6 block font-mono text-sm tracking-[0.24em] uppercase text-accent">
                 {t.contact.label}
               </span>
             </AnimatedText>
 
-            <AnimatedText delay={0.1} variant="clip" as="h2">
-              <span className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl italic text-cream leading-tight block">
+            <AnimatedText id="contact-heading" delay={0.1} variant="clip" as="h2">
+              <span className="font-display block text-[2.5rem] leading-[0.94] tracking-[-0.04em] text-cream sm:text-5xl md:text-6xl lg:text-7xl">
                 {t.contact.heading}
               </span>
             </AnimatedText>
 
             <AnimatedText delay={0.3}>
-              <p className="text-cream-dim text-base md:text-lg leading-relaxed max-w-xl mt-6 mb-10">
-                {t.hero.bio}
+              <p className="mt-6 mb-10 max-w-xl text-lg leading-relaxed text-cream-dim md:text-xl">
+                {t.contact.description}
               </p>
             </AnimatedText>
 
@@ -92,7 +92,7 @@ export default function Contact() {
                   href={SOCIAL_LINKS.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-2 font-mono text-sm tracking-wider uppercase bg-cream text-noir px-6 py-3 hover:bg-accent hover:text-cream transition-colors duration-300"
+                  className="group inline-flex min-h-11 w-full items-center justify-center gap-2 font-mono text-sm tracking-wider uppercase bg-cream text-noir px-6 py-3 hover:bg-accent hover:text-cream transition-colors duration-300 sm:w-auto"
                 >
                   LinkedIn
                   <span
@@ -106,7 +106,7 @@ export default function Contact() {
                   href={SOCIAL_LINKS.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-sm tracking-wider uppercase text-cream-dim hover:text-cream border-b border-cream-muted hover:border-cream pb-0.5 transition-colors duration-300"
+                  className="inline-flex min-h-11 w-full items-center justify-center font-mono text-sm tracking-wider uppercase text-cream-dim hover:text-cream border-b border-cream-muted hover:border-cream pb-0.5 transition-colors duration-300 sm:w-auto"
                 >
                   GitHub
                 </a>
@@ -114,9 +114,9 @@ export default function Contact() {
                   href={SOCIAL_LINKS.cv}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-mono text-sm tracking-wider uppercase text-cream-dim hover:text-cream border-b border-cream-muted hover:border-cream pb-0.5 transition-colors duration-300"
+                  className="inline-flex min-h-11 w-full items-center justify-center font-mono text-sm tracking-wider uppercase text-cream-dim hover:text-cream border-b border-cream-muted hover:border-cream pb-0.5 transition-colors duration-300 sm:w-auto"
                 >
-                  Descargar CV
+                  {t.contact.downloadCV}
                 </a>
               </div>
             </AnimatedText>
@@ -125,44 +125,47 @@ export default function Contact() {
           {/* Columna derecha: info contextual */}
           <div className="md:col-span-4 flex flex-col justify-end">
             <AnimatedText delay={0.5}>
-              <div className="space-y-8">
+              <div className="relative border border-noir-border bg-noir-light/70 px-6 py-7 md:px-8 md:py-9">
+                <div className="absolute left-0 top-0 h-px w-24 bg-accent" aria-hidden="true" />
+                <div className="space-y-8">
                 {/* Status */}
-                <div>
-                  <h3 className="font-mono text-[10px] tracking-[0.2em] uppercase text-cream-muted mb-2">
-                    {t.contact.statusLabel}
-                  </h3>
-                  <div className="flex items-center gap-2">
-                    <span className="relative flex h-2 w-2">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
-                      <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
-                    </span>
-                    <span className="font-mono text-xs text-cream">
-                      {t.hero.status}
-                    </span>
+                  <div>
+                    <h3 className="mb-2 font-mono text-xs tracking-[0.16em] uppercase text-cream-muted">
+                      {t.contact.statusLabel}
+                    </h3>
+                    <div className="flex items-center gap-2">
+                      <span className="relative flex h-2 w-2">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75" />
+                        <span className="relative inline-flex rounded-full h-2 w-2 bg-accent" />
+                      </span>
+                      <span className="font-mono text-sm text-cream">
+                        {t.hero.status}
+                      </span>
+                    </div>
                   </div>
-                </div>
 
-                {/* Ubicación / estudio actual */}
-                <div>
-                  <h3 className="font-mono text-[10px] tracking-[0.2em] uppercase text-cream-muted mb-2">
-                    {t.contact.currentlyLabel}
-                  </h3>
-                  <p className="font-mono text-xs text-cream">
-                    {t.hero.statusDetail}
-                  </p>
-                </div>
+                  {/* Ubicación / estudio actual */}
+                  <div>
+                    <h3 className="mb-2 font-mono text-xs tracking-[0.16em] uppercase text-cream-muted">
+                      {t.contact.currentlyLabel}
+                    </h3>
+                    <p className="font-mono text-sm text-cream">
+                      {t.hero.statusDetail}
+                    </p>
+                  </div>
 
-                {/* Roles */}
-                <div>
-                  <h3 className="font-mono text-[10px] tracking-[0.2em] uppercase text-cream-muted mb-2">
-                    {t.contact.rolesLabel}
-                  </h3>
-                  <div className="space-y-1">
-                    {t.hero.roles.map((role) => (
-                      <p key={role} className="font-mono text-xs text-cream">
-                        {role}
-                      </p>
-                    ))}
+                  {/* Roles */}
+                  <div>
+                    <h3 className="mb-2 font-mono text-xs tracking-[0.16em] uppercase text-cream-muted">
+                      {t.contact.rolesLabel}
+                    </h3>
+                    <div className="space-y-1">
+                      {t.hero.roles.map((role) => (
+                        <p key={role} className="font-mono text-sm text-cream">
+                          {role}
+                        </p>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

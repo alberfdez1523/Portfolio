@@ -11,10 +11,10 @@ function MarqueeTrack({ items }: { items: string[] }) {
     <div className="flex shrink-0 whitespace-nowrap">
       {items.map((item) => (
         <span key={item} className="flex items-center mx-6 md:mx-10">
-          <span className="font-serif text-lg md:text-xl italic text-cream-dim tracking-wide">
+          <span className="font-display text-lg md:text-xl text-cream-dim tracking-wide">
             {item}
           </span>
-          <span className="ml-6 md:ml-10 text-accent text-xs" aria-hidden="true">✦</span>
+          <span className="ml-6 text-sm text-accent md:ml-10" aria-hidden="true">✦</span>
         </span>
       ))}
     </div>

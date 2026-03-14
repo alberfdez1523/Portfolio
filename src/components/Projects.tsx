@@ -29,19 +29,19 @@ export default function Projects() {
   return (
     <section
       id="projects"
-      className="py-24 md:py-32 lg:py-40"
+      className="py-20 md:py-32 lg:py-40"
       aria-labelledby="projects-heading"
     >
       <div className="container-editorial">
-        <SectionHeading label={t.projects.label} title={t.projects.title} />
+        <SectionHeading id="projects-heading" label={t.projects.label} title={t.projects.title} />
 
         {/* Link a ver todos los proyectos en GitHub */}
-        <div className="flex justify-end mb-12">
+        <div className="mb-10 flex justify-start md:mb-12 md:justify-end">
           <a
             href={SOCIAL_LINKS.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 font-mono text-xs tracking-wider uppercase text-cream-dim hover:text-accent transition-colors duration-300"
+            className="group inline-flex items-center gap-2 font-mono text-sm tracking-[0.12em] uppercase text-cream-dim transition-colors duration-300 hover:text-accent"
           >
             {t.projects.viewAll}
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true">
@@ -51,7 +51,7 @@ export default function Projects() {
         </div>
 
         {/* Lista de proyectos */}
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           {t.projects.items.map((project) => (
             <ProjectCard
               key={project.title}
@@ -116,13 +116,13 @@ function ProjectCard({ project, prefersReduced, viewOnGithub, projectPrefix }: P
         href={project.github}
         target="_blank"
         rel="noopener noreferrer"
-        className="block p-8 md:p-12 lg:p-16"
+        className="block p-6 sm:p-8 md:p-12 lg:p-16"
         aria-label={`Ver proyecto: ${project.title} en GitHub`}
       >
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-start">
+        <div className="grid grid-cols-1 items-start gap-5 sm:gap-6 md:grid-cols-12 md:gap-12">
           {/* Número editorial grande — decorativo */}
           <div className="md:col-span-2">
-            <span className="font-serif text-6xl md:text-8xl italic text-noir-border group-hover:text-accent/20 transition-colors duration-700">
+            <span className="font-serif text-5xl sm:text-6xl md:text-8xl italic text-noir-border group-hover:text-accent/20 transition-colors duration-700">
               {project.number}
             </span>
           </div>
@@ -130,7 +130,7 @@ function ProjectCard({ project, prefersReduced, viewOnGithub, projectPrefix }: P
           {/* Contenido principal */}
           <div className="md:col-span-7">
             {/* Etiqueta */}
-            <span className="font-mono text-[10px] tracking-[0.3em] uppercase text-accent mb-3 block">
+            <span className="mb-3 block font-mono text-xs tracking-[0.24em] uppercase text-accent">
               {projectPrefix} {project.number}
             </span>
 
@@ -140,7 +140,7 @@ function ProjectCard({ project, prefersReduced, viewOnGithub, projectPrefix }: P
             </h3>
 
             {/* Descripción */}
-            <p className="text-cream-dim text-base leading-relaxed mb-6 max-w-2xl">
+            <p className="mb-6 max-w-2xl text-lg leading-relaxed text-cream-dim">
               {project.description}
             </p>
 
@@ -149,7 +149,7 @@ function ProjectCard({ project, prefersReduced, viewOnGithub, projectPrefix }: P
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="font-mono text-[10px] tracking-wider uppercase px-3 py-1 bg-noir-surface border border-noir-border text-cream-muted"
+                  className="border border-noir-border bg-noir-surface px-3 py-1 font-mono text-xs tracking-[0.12em] text-cream-muted uppercase"
                 >
                   {tag}
                 </span>
@@ -158,8 +158,8 @@ function ProjectCard({ project, prefersReduced, viewOnGithub, projectPrefix }: P
           </div>
 
           {/* CTA — flecha que se anima al hover */}
-          <div className="md:col-span-3 flex md:justify-end md:items-start">
-            <span className="font-mono text-xs tracking-wider uppercase text-cream-dim group-hover:text-accent flex items-center gap-2 transition-colors duration-300">
+          <div className="flex md:col-span-3 md:justify-end md:items-start">
+            <span className="flex items-center gap-2 font-mono text-sm tracking-[0.12em] uppercase text-cream-dim transition-colors duration-300 group-hover:text-accent">
               {viewOnGithub}
               <motion.span
                 className="inline-block text-lg"

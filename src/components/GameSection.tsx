@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useMemo, useState } from 'react';
-import confetti from 'canvas-confetti';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/contexts/LanguageContext';
 
@@ -72,15 +71,26 @@ export default function GameSection() {
   useEffect(() => {
     if (status !== 'completed') return;
 
-    const fire = () => {
-      confetti({ particleCount: 120, spread: 75, origin: { y: 0.65 } });
-      confetti({ particleCount: 90, spread: 110, origin: { x: 0.2, y: 0.7 } });
-      confetti({ particleCount: 90, spread: 110, origin: { x: 0.8, y: 0.7 } });
-    };
+    let cancelled = false;
+    let timeoutId: number | undefined;
 
-    fire();
-    const timeout = setTimeout(fire, 350);
-    return () => clearTimeout(timeout);
+    void import('canvas-confetti').then(({ default: confetti }) => {
+      if (cancelled) return;
+
+      const fire = () => {
+        confetti({ particleCount: 120, spread: 75, origin: { y: 0.65 } });
+        confetti({ particleCount: 90, spread: 110, origin: { x: 0.2, y: 0.7 } });
+        confetti({ particleCount: 90, spread: 110, origin: { x: 0.8, y: 0.7 } });
+      };
+
+      fire();
+      timeoutId = window.setTimeout(fire, 350);
+    });
+
+    return () => {
+      cancelled = true;
+      if (timeoutId) window.clearTimeout(timeoutId);
+    };
   }, [status]);
 
   const submitGuess = () => {
@@ -187,16 +197,16 @@ export default function GameSection() {
   const hintText = t.game.hints[level] ?? '';
 
   return (
-    <section id="game" className="py-20 md:py-28 lg:py-40 bg-noir-light" aria-label={t.game.title}>
+    <section id="game" className="py-[4.5rem] md:py-28 lg:py-40 bg-noir-light" aria-label={t.game.title}>
       <div className="container-editorial">
         <div className="mb-12 md:mb-14">
-          <span className="font-mono text-xs tracking-[0.3em] uppercase text-accent">
+          <span className="font-mono text-sm tracking-[0.24em] uppercase text-accent">
             {t.game.label}
           </span>
 
           <div className="mt-4 mb-6 h-px bg-noir-border w-12" aria-hidden="true" />
 
-          <h2 id="game-heading" className="font-serif text-3xl sm:text-4xl md:text-5xl lg:text-6xl italic text-cream leading-tight">
+          <h2 id="game-heading" className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-cream leading-[0.95] tracking-[-0.03em]">
             {t.game.title}
           </h2>
         </div>
@@ -223,19 +233,21 @@ export default function GameSection() {
 
         <div className="border border-noir-border bg-noir-surface/70 p-4 sm:p-6 md:p-8">
           <div className="flex flex-wrap items-center justify-between gap-3 mb-5">
-            <p className="font-mono text-xs tracking-[0.2em] uppercase text-cream-muted">
+            <p className="font-mono text-sm tracking-[0.16em] uppercase text-cream-muted">
               {t.game.levelLabel} {level + 1} / {words.length}
             </p>
-            <p className="font-mono text-xs tracking-[0.2em] uppercase text-accent">
+            <p className="font-mono text-sm tracking-[0.16em] uppercase text-accent">
               {t.game.wordLengthLabel}: {currentTarget.length}
             </p>
           </div>
 
-          <div className="space-y-2 mb-6 overflow-x-auto pb-1">{renderedAttempts}</div>
+          <div className="mb-6 overflow-x-auto pb-1">
+            <div className="min-w-max space-y-2">{renderedAttempts}</div>
+          </div>
 
           {showHint && (
             <div className="mb-6 border border-accent/40 bg-noir px-4 py-3">
-              <p className="font-mono text-[10px] tracking-[0.2em] uppercase text-accent mb-1">
+              <p className="mb-1 font-mono text-xs tracking-[0.16em] uppercase text-accent">
                 {t.game.hintLabel}
               </p>
               <p className="text-cream-dim text-sm">{hintText}</p>
@@ -243,12 +255,12 @@ export default function GameSection() {
           )}
 
           <div className="mb-6">
-            <p className="font-mono text-[10px] tracking-[0.25em] uppercase text-cream-muted mb-3">
+            <p className="mb-3 font-mono text-xs tracking-[0.18em] uppercase text-cream-muted">
               {t.game.keyboardLabel}
             </p>
-            <div className="space-y-2">
+            <div className="space-y-2 overflow-x-auto pb-1">
               {KEYBOARD_ROWS.map((row) => (
-                <div key={row} className="flex justify-center gap-1.5 sm:gap-2">
+                <div key={row} className="flex min-w-max justify-center gap-1.5 sm:gap-2">
                   {row.split('').map((letter) => {
                     const state = keyboardState.get(letter);
                     const keyStyle = state === 'correct'
@@ -289,7 +301,7 @@ export default function GameSection() {
 
               <button
                 onClick={submitGuess}
-                className="w-full sm:w-auto font-mono text-xs tracking-wider uppercase bg-cream text-noir px-5 py-3 hover:bg-accent hover:text-cream transition-colors duration-300"
+                className="w-full bg-cream px-5 py-3 font-mono text-sm tracking-[0.12em] text-noir uppercase transition-colors duration-300 hover:bg-accent hover:text-cream sm:w-auto"
               >
                 {t.game.submit}
               </button>
@@ -297,13 +309,13 @@ export default function GameSection() {
           )}
 
           {message && (
-            <p className="mt-4 font-mono text-xs sm:text-sm text-cream-dim">{message}</p>
+            <p className="mt-4 font-mono text-sm text-cream-dim sm:text-base">{message}</p>
           )}
 
           {status === 'won-level' && (
             <button
               onClick={goNextLevel}
-              className="mt-4 font-mono text-xs tracking-wider uppercase bg-accent text-cream px-5 py-3 hover:bg-accent-hover transition-colors duration-300"
+              className="mt-4 bg-accent px-5 py-3 font-mono text-sm tracking-[0.12em] text-cream uppercase transition-colors duration-300 hover:bg-accent-hover"
             >
               {t.game.nextLevel}
             </button>
@@ -312,7 +324,7 @@ export default function GameSection() {
           {status === 'lost-level' && (
             <button
               onClick={retryLevel}
-              className="mt-4 font-mono text-xs tracking-wider uppercase border border-noir-border text-cream px-5 py-3 hover:border-cream-muted transition-colors duration-300"
+              className="mt-4 border border-noir-border px-5 py-3 font-mono text-sm tracking-[0.12em] text-cream uppercase transition-colors duration-300 hover:border-cream-muted"
             >
               {t.game.retry}
             </button>
@@ -320,11 +332,11 @@ export default function GameSection() {
 
           {status === 'completed' && (
             <div className="mt-5 border border-accent/40 bg-noir p-4 sm:p-5">
-              <p className="font-serif italic text-2xl sm:text-3xl text-cream">{t.game.congratsTitle}</p>
+              <p className="font-display text-2xl sm:text-3xl text-cream">{t.game.congratsTitle}</p>
               <p className="mt-2 text-cream-dim">{t.game.congratsBody}</p>
               <a
                 href="#contact"
-                className="inline-flex mt-4 font-mono text-xs tracking-wider uppercase bg-accent text-cream px-5 py-3 hover:bg-accent-hover transition-colors duration-300"
+                className="mt-4 inline-flex bg-accent px-5 py-3 font-mono text-sm tracking-[0.12em] text-cream uppercase transition-colors duration-300 hover:bg-accent-hover"
               >
                 {t.game.contactCta}
               </a>
